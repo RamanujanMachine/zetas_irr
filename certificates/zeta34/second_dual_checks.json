@@ -1,0 +1,30 @@
+[
+  {
+    "N": 0,
+    "all_three_columns_exact": true
+  },
+  {
+    "N": 1,
+    "all_three_columns_exact": true
+  },
+  {
+    "N": 2,
+    "all_three_columns_exact": true
+  },
+  {
+    "N": 4,
+    "all_three_columns_exact": true
+  },
+  {
+    "N": 8,
+    "all_three_columns_exact": true
+  },
+  {
+    "N": 12,
+    "all_three_columns_exact": true
+  },
+  {
+    "N": 20,
+    "all_three_columns_exact": true
+  }
+]

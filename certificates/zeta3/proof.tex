@@ -1,0 +1,607 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,longtable,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\vp}{v_p}
+\newcommand{\dd}{\mathrm d}
+\newcommand{\z}{\zeta(3)}
+\DeclareMathOperator{\lcm}{lcm}
+\title{An arithmetic bound for the MG55 trajectory for $\zeta(3)$}
+\author{Proof development and exact certificates}
+\date{6 October 2026}
+\begin{document}
+\maketitle
+
+\noindent The convergence rate is a spectral calculation. The substantive
+arithmetic step is to use \emph{two formulas for the same rational numbers},
+and take the better denominator bound separately at every prime. Each formula
+alone gives a weaker estimate. Their combination proves the bound below.
+The finite arithmetic certificate uses exact rational operations; a separate
+integer-only certificate bounds its limiting integral.
+
+\begin{theorem}\label{thm:main}
+Consider the field $\mathrm{MeijerG}(5,2,5,5,1)$, with coordinate order
+$(a_0,\ldots,a_4,b_0,\ldots,b_4)$, initial point
+\[
+ (1,1,0,0,2;0,0,0,0,0)
+\]
+and direction
+\[
+ (11,12,-16,-17,10;0,1,2,-1,-2).
+\]
+Write its forward walk as
+\[
+ W_N=\begin{pmatrix}V_N&*\\0&(-1)^N\end{pmatrix},\qquad
+ T_N=V_N^{-T},\qquad
+ U=\begin{pmatrix}0&-1&1\\0&0&2\end{pmatrix}.
+\]
+Define rational numbers $x_{Nj},y_{Nj}$ by
+\[
+ \begin{pmatrix}x_{N0}&x_{N1}&x_{N2}\\y_{N0}&y_{N1}&y_{N2}\end{pmatrix}=UT_N.
+\]
+The searched approximation is $j=0$, equivalently
+\[
+ \frac{(W_N^{-T})_{2,0}-(W_N^{-T})_{1,0}}{2(W_N^{-T})_{2,0}},
+\]
+with zero-based indices and initial readout rows $(0,-1,1,0)$ and $(0,0,2,0)$.
+There are explicit positive integers $D_N$ such that all six numbers
+$D_Nx_{Nj},D_Ny_{Nj}$ are integers, and
+\[
+ \log D_N\le (38.783993451+o(1))N.
+\]
+In particular, the same trajectory gives
+\[
+ \boxed{\delta>0.22521,\qquad \mu(\zeta(3))<5.4402.}
+\]
+Here the assertion about $\delta$ means that, for every fixed
+$\delta_0<0.22521$, every defined readout $x_{Nj}/y_{Nj}$, reduced to
+$p/q$, satisfies $|\z-p/q|\le |q|^{-1-\delta_0}$ for all sufficiently large $N$.
+\end{theorem}
+
+\section*{1. The analytic estimates}
+Put $u=(0,-1,1)$ and $v=(0,0,2)$. The estimates needed below are
+\begin{align}
+ \|vT_N\|&\le \exp(aN+o(N)),\label{eq:qgrowth}\\
+ \|\z vT_N-uT_N\|&\le \exp(-bN+o(N)),\label{eq:error}
+\end{align}
+where
+\[
+ a=53.28758332262020526735\ldots,\qquad
+ b=59.51995592483447507214\ldots.
+\]
+These are the usual two spectral rates; they do not include denominator
+clearing. For completeness, Section~6 identifies the relevant solution and
+explains why the error estimate holds, including the two complex conjugate
+characteristic roots.
+
+Let $B(n)$ be the upper left $3\times3$ block of the single-step matrix,
+so $V_N=B(0)\cdots B(N-1)$. With $H(n)=\operatorname{diag}(1,n,n^2)$,
+\[
+ H(n)B(n)H(n+1)^{-1}=A+O(n^{-1}).
+\]
+The rational matrix $A$ has one positive eigenvalue $\lambda_0=e^{-a}$,
+and two nonreal conjugate eigenvalues of modulus $e^b$.
+The exact characteristic polynomial is
+\[
+ \chi(X)=X^3-c_2X^2+c_1X-c_0,
+\]
+{\small
+\begin{align*}
+ c_2&=\frac{83220721427294106907399200607730930785765129529801897078934559}{1484577825190137274336280508756918272}\\
+ c_1&=\frac{731334801243107466089356596505717853275074571608716447379201100334794667003154611901941573810757}{146466868948884247884332915718530654652342544}\\
+ c_0&=\frac{76623012348334313797938377862237790794460627983667564193521662995163373351121226574589853696}{2130520759189220333584634002331004844478493702212809977860478179}\\
+\end{align*}
+}
+Its discriminant is negative, and its unique real root is bracketed by
+$7.202721273276511926282264010546996958\cdot10^{-24}$ and
+$7.202721273276511926282264010546996959\cdot10^{-24}$.
+The identities $a=-\log\lambda_0$ and $b=\tfrac12\log(c_0/\lambda_0)$
+give the intervals below. The certificate bounds these logarithms using an
+exact rational series with a rational remainder, without floating-point assumptions.
+The matrix and independent algebraic reconstruction are included in the proof files. In particular,
+\[
+ 53.28758332262<a<53.28758332263,\qquad
+ 59.51995592483<b<59.51995592484.
+\]
+
+\section*{2. The two exact formulas}
+Throughout, $(t)_r=t(t+1)\cdots(t+r-1)$, with $(t)_0=1$.
+First set
+\[
+ R_N(t)=\frac{(t-17N)_{15N}(t-16N)_{15N}}
+ {(t)_{10N+2}(t+N)_{10N+1}(t+2N)_{10N+1}}.
+\]
+For $j=0,1,2$, expand by partial fractions the convergent sum
+\[
+ -\sum_{t=2N+1}^{\infty}\frac{\dd}{\dd t}\bigl((-t)^jR_N(t)\bigr)
+ =A_{Nj}\zeta(4)+B_{Nj}\zeta(3)+C_{Nj}.
+\]
+The coefficients on the right are defined by partial fractions, so the
+following identity is a coefficientwise identity over $\Q$:
+\begin{equation}\label{eq:originalidentity}
+ \mathcal C_N:=(A_{Nj},B_{Nj},C_{Nj})_{\text{rows}}
+ =(-1)^N\mathcal C_0V_N,\qquad
+ \mathcal C_0=\begin{pmatrix}3&0&0\\-2&-2&0\\1&1&1\end{pmatrix}.
+\end{equation}
+No independence assertion about $\zeta(3)$ and $\zeta(4)$ is used.
+Also, exactly,
+\begin{equation}\label{eq:det}
+ \det V_N=F_N=
+ \frac{\prod_{r\in\mathcal A}(rN)!}
+ {\prod_{r\in\mathcal B}(rN)!\prod_{r\in\mathcal E}(rN+1)!},
+\end{equation}
+where repetitions in these lists are retained:
+\begin{align*}
+ \mathcal A&=(16,17,18,15,14,17,18,19,16,15),\\
+ \mathcal B&=(11,10,9,12,13,12,11,10,13,14),\\
+ \mathcal E&=(10,9,8,11,12).
+\end{align*}
+The identity follows either by the axis determinants or by checking the
+rational identity $\det B(n)=F_{n+1}/F_n$ and $F_0=1$.
+
+The second formula is considerably simpler. Put
+\begin{align*}
+ R_N^*(t)&=\frac{(t+N+1)_{11N}(t+1)_{11N}(t+2N)_{8N+1}}
+ {(t+13N+1)_{15N+1}(t+14N+1)_{15N+1}},\\
+ \kappa_N&=450N^2+55N+2,\qquad S_N^*(t)=(t+\kappa_N)R_N^*(t).
+\end{align*}
+Then, for every $N\ge0$,
+\begin{equation}\label{eq:dualidentity}
+ 1-\sum_{t=-11N}^{\infty}(S_N^*)'(t)
+       =(-1)^N(x_{N2}-\zeta(3)y_{N2}).
+\end{equation}
+The $1$ is necessary: $S_N^*(t)=1+O(t^{-2})$ at infinity. In particular,
+at $N=0$ this is $1-2\zeta(3)$, exactly the initial readout.
+
+Write
+\[
+ S_N^*(t)=1+\sum_k\left(\frac{d_{k1}}{t+k}+\frac{d_{k2}}{(t+k)^2}\right).
+\]
+The pole range is $13N+1\le k\le29N+1$, with double poles precisely on
+$14N+1\le k\le28N+1$, and $\sum_kd_{k1}=0$. Thus
+\begin{align*}
+ (-1)^{N+1}y_{N2}&=2\sum_k d_{k2},\\
+ (-1)^Nx_{N2}&=1-\sum_k\left(d_{k1}H_{k-11N-1}^{(2)}
+                         +2d_{k2}H_{k-11N-1}^{(3)}\right).
+\end{align*}
+The largest harmonic index is $18N$. These are finite formulas for the
+actual CMF coefficients, not a second, unrelated approximation sequence.
+
+For use with all three columns, define the integer matrix
+\[
+ J_N=\begin{pmatrix}
+ 4N^2(13725N^2+2389N+103)&-6N(275N^2+150N+11)&-450N^2-43N+2&3\\
+ N(5N+1)(330N+23)&N(450N+43)&-2&0\\
+ -(18N+1)(25N+1)&1&0&0\\
+ 0&0&0&0
+ \end{pmatrix}.
+\]
+Each readout is given by the same formal residue functional applied to
+$Q_{Nj}(t)R_N^*(t)$, where
+\[
+ Q_{Nj}(t)=\sum_{r=0}^3(J_N)_{jr}(-t-12N-1)^r\in\Z[t].
+\]
+Its polynomial part has integer coefficients and degree at most two. Its
+contribution therefore has denominator dividing $6$; the proper part has
+the same double poles and harmonic indices as above. Consequently the
+denominator estimate derived from this formula applies to all three columns.
+Section~7 proves the coefficient identities and explains the polynomial term.
+
+\section*{3. Explicit all-$N$ integer multipliers}
+Here are fully explicit bounds, including prime powers and small primes.
+For a prime $p$, let
+\[
+ f_p(m)=v_p(m!)=\sum_{r\ge1}\left\lfloor\frac m{p^r}\right\rfloor,
+ \qquad \ell_p(m)=v_p(\lcm(1,\ldots,m)),\qquad \ell_p(0)=0.
+\]
+For an integer interval $I=[a,b]$ and an integer $k$, define
+\[
+ G_p(k;[a,b])=\begin{cases}
+ f_p(k-a)+f_p(b-k),&a\le k\le b,\\
+ f_p(b-k)-f_p(a-k-1),&k<a,\\
+ f_p(k-a)-f_p(k-b-1),&k>b.
+ \end{cases}
+\]
+This is exactly the valuation of $\prod_{r=a,\ r\ne k}^b(r-k)$.
+
+For the original kernel use
+\begin{align*}
+ \mathcal I_o&=([0,10N+1],[N,11N],[2N,12N]),\\
+ m_o(k)&=\#\{I\in\mathcal I_o:k\in I\},\\
+ V_o(k)&=f_p(k+17N)+f_p(k+16N)-f_p(k+2N)-f_p(k+N)
+              -\sum_{I\in\mathcal I_o}G_p(k;I),\\
+ A_p&=\min_{2N\le k\le10N+1}V_o(k),\\
+ C_p&=\min_{0\le k\le12N}
+ \{V_o(k)-(m_o(k)-1)\ell_p(k+17N)-2\ell_p(k+2N)\},\\
+ E_o(N,p)&=\max\{0,v_p(F_N)-A_p-C_p\}\qquad(p>3).
+\end{align*}
+For the dual kernel use
+\begin{align*}
+ \mathcal I_d&=([13N+1,28N+1],[14N+1,29N+1]),\\
+ m_d(k)&=\#\{I\in\mathcal I_d:k\in I\},\\
+ V_d(k)&=f_p(k-N-1)+f_p(k-1)+f_p(k-2N)\\
+ &\quad-f_p(k-12N-1)-f_p(k-11N-1)-f_p(k-10N-1)
+             -\sum_{I\in\mathcal I_d}G_p(k;I),\\
+ h(k)&=k-11N-1,\qquad L(k)=\max\{k-1,29N+1-k\},\\
+ E_d(N,p)&=\max\left\{v_p(6),0,
+ \max_{13N+1\le k\le29N+1}
+ \bigl((m_d(k)-1)\ell_p(L(k))+2\ell_p(h(k))-V_d(k)\bigr)\right\}.
+\end{align*}
+The second term in $L(k)$ must be retained: denominator differences can be
+larger than $k-1$ near the left end of the double-pole interval.
+
+For $N\ge1$, the promised explicit integer is
+\begin{equation}\label{eq:DN}
+ D_N=2^{E_d(N,2)}3^{E_d(N,3)}
+       \prod_{3<p\le29N+1}p^{\min\{E_o(N,p),E_d(N,p)\}},
+ \qquad D_0=1.
+\end{equation}
+
+\begin{lemma}\label{lem:integer}
+For every integer $N\ge0$ and $j=0,1,2$, the numbers $D_Nx_{Nj}$ and
+$D_Ny_{Nj}$ are integers.
+\end{lemma}
+\begin{proof}
+At a pole $-k$ of order $m$, the top partial-fraction coefficient has
+valuation $V_o(k)$ or $V_d(k)$ respectively. Each Taylor derivative can
+lose at most $\ell_p(M)$, where $M$ bounds the absolute values of all
+nonzero integer factors at that pole. Thus the coefficient of
+$(t+k)^{-r}$ has valuation at least $V-(m-r)\ell_p(M)$.
+Multiplication by an integer polynomial does not weaken this statement.
+For the original kernel the possible factor $1/2$ from the second Taylor
+coefficient is harmless because this bound is used only for $p>3$.
+
+The rational coefficient contributed by that pole also includes
+$H_h^{(r+1)}$, with valuation at least $-(r+1)\ell_p(h)$. Since
+$\ell_p(M)\ge\ell_p(h)$, its valuation is at least
+\[
+ V-(m-1)\ell_p(M)-2\ell_p(h).
+\]
+This proves the bound $C_p$ for every entry of the rational row of
+$\mathcal C_N$. The $\zeta(3)$ row satisfies the same weaker bound, and
+the $\zeta(4)$ row has valuation at least $A_p$.
+Now
+\[
+ u\mathcal C_0^T=(0,2,0),\qquad v\mathcal C_0^T=(0,0,2),\qquad
+ \det\mathcal C_N=-6(-1)^NF_N.
+\]
+Consequently the cofactors expressing $x_{Nj}$ use the $\zeta(4)$ and
+rational rows, and those expressing $y_{Nj}$ use the $\zeta(4)$ and
+$\zeta(3)$ rows. This gives the denominator bound $E_o(N,p)$.
+
+For the dual formula, the same pole argument, now with $m\le2$, proves
+the bound $E_d(N,p)$ for the proper part at every prime. The integer
+polynomial part has degree at most two, so its Bernoulli evaluation has
+denominator dividing $6$, already included in $E_d$.
+Both formulas describe the same rational numbers, so at each prime we
+may take the minimum of the two bounds. No prime larger than $29N+1$
+occurs. This proves the lemma; $N=0$ follows directly from $U$.
+\end{proof}
+
+\section*{4. The denominator growth calculation}
+We explain why this is a finite floor calculation, rather than a finite-depth
+experiment. For $p>\sqrt{30N+10}$ all factorial valuations in Section~3
+equal $\lfloor m/p\rfloor$, and every $\ell_p(m)$ equals the indicator
+of $m\ge p$. Put $x=N/p$ and $y=k/p$.
+
+Discard temporarily the primes dividing
+\[
+ \prod_{d=1}^{29}\prod_{r=-10}^{10}(dN+r).
+\]
+For large $N$ this is a nonzero integer of polynomial growth. The logarithmic
+contribution of these primes is $O(\log N)$: the exponents at the remaining
+large primes are uniformly bounded. Small primes contribute $o(N)$, because
+the explicit uniform bound is
+\[
+ E_d(N,p)\le\max\{v_p(6),5\ell_p(29N+1)\}.
+\]
+At each Legendre level the dual top-coefficient valuation is at least
+$m_d(k)-4$: in the simple-pole case there are four positive and six negative
+factorial floors with zero net linear argument, and in the double-pole case
+three positive and seven negative floors with net linear argument one.
+The loss is at most $m_d(k)+1$ per level. Thus small primes contribute
+$O(\sqrt N\log N)$, and the exceptional large primes have bounded exponents.
+
+Every possible jump of a factorial floor, pole membership, or loss indicator
+as $k$ varies has the form $k=cN+jp+s$, with $|s|\le2$. The relevant sets
+of $c$ are
+\begin{align*}
+ \mathcal S_o&=\{-17,-16,-2,-1,0,1,2,10,11,12\},\\
+ \mathcal S_d&=\{0,1,2,10,11,12,13,14,28,29\}.
+\end{align*}
+The order of two distinct jumps can change only when
+$(c-c')x$ is an integer. Since $|c-c'|\le29$, the Farey fractions of order
+$29$ partition $(0,1)$ into all the required chambers. The discarded primes
+cover the bounded integer offsets near chamber boundaries.
+
+On each chamber it suffices to inspect the jumps and the constant regions
+between them. The certificate also inspects offsets $-3,\ldots,3$ at every
+jump using exact rational numbers with a formal positive infinitesimal.
+This covers isolated endpoint states, not just open intervals.
+There are $270$ chambers. Taking the minimum of the two resulting bounds
+gives a step function $e_0(x)$ for $0<x<1$.
+
+For $x>1$ the bound is periodic in $x$; denote it by $e_1(\{x\})$.
+Indeed each pole-order sector then contains a full period of residues
+$k\bmod p$, both loss indicators are one, and the factorial slope sums
+balance. The factorial determinant also has balanced slope sum
+$165-115-50=0$. The exact chamber calculation gives the table in the
+appendix. This calculation uses only floors of rational numbers, comparisons,
+and integer maxima and minima.
+
+The prime number theorem now gives
+\begin{align}\label{eq:c}
+ \limsup_{N\to\infty}\frac{\log D_N}{N}
+ &\le c:=\int_0^1\frac{e_0(x)}{x^2}\,\dd x
+       +\int_0^1e_1(x)\psi'(1+x)\,\dd x\\
+ &=38.78399331966841174068336120201250063785\ldots.\nonumber
+\end{align}
+For example, a chamber $(l,r)$ in the first integral contributes
+$e_0(1/l-1/r)$, and its contribution from the intervals $(k+l,k+r)$,
+$k\ge1$, is
+$e_1\sum_{k\ge1}((k+l)^{-1}-(k+r)^{-1})$.
+One first applies the prime number theorem on finitely many such intervals;
+the remaining $x$-tail is $O(1/K)$ uniformly and can then be discarded.
+
+There is no need to trust a floating-point digamma evaluation. The first
+integral is exactly $9967051/272272$. Sum the rational interval terms in
+the second integral for $k=1,\ldots,4096$, rounding each upward to a multiple
+of $10^{-16}$. Its remaining tail is at most $m/4096$, where
+\[
+ m=\int_0^1e_1(x)\,\dd x=\frac{1313791}{604656}.
+\]
+This purely integer calculation gives
+\begin{equation}\label{eq:cup}
+ c\le38.7839934501989356<38.784.
+\end{equation}
+Together with Lemma~\ref{lem:integer}, this proves the arithmetic assertion
+in Theorem~\ref{thm:main}.
+
+This is also the desired GCD estimate. If $d_N$ is any integer clearing the
+original rational readouts and $p_{Nj}^{\mathrm{raw}}=d_Nx_{Nj}$,
+$q_{Nj}^{\mathrm{raw}}=d_Ny_{Nj}$, their least common denominator $L_{Nj}$
+divides both $d_N$ and $D_N$. Therefore
+\[
+ \gcd(p_{Nj}^{\mathrm{raw}},q_{Nj}^{\mathrm{raw}})
+ \ge\frac{d_N}{L_{Nj}}\ge\frac{d_N}{D_N},\qquad
+ \log\gcd\ge\log d_N-cN-o(N).
+\]
+
+\section*{5. Passing from integer linear forms to $\mu$}
+Put $P_{Nj}=D_Nx_{Nj}$ and $Q_{Nj}=D_Ny_{Nj}$. They are integers, and
+\[
+ |Q_{Nj}|\le e^{(a+c)N+o(N)},\qquad
+ |Q_{Nj}\z-P_{Nj}|\le e^{-(b-c)N+o(N)}.
+\]
+The $2\times3$ matrix with these three pairs as columns has rank two,
+because $U$ has rank two and $T_N$ is invertible. Thus for any rational
+$h/k$ with $k>0$, at least one column satisfies
+$kP_{Nj}-hQ_{Nj}\ne0$.
+Choose $N$ of size $\log k/(b-c-\varepsilon)$ so that all three linear
+forms have absolute value at most $1/(2k)$. For that column,
+\[
+ 1\le |kP_{Nj}-hQ_{Nj}|
+ \le\tfrac12+|Q_{Nj}|\,|k\z-h|.
+\]
+It follows, on letting $\varepsilon$ decrease to zero, that
+\begin{equation}\label{eq:mu}
+ \mu(\zeta(3))\le1+\frac{a+c}{b-c}
+       =\frac{a+b}{b-c}.
+\end{equation}
+No lower bound on an oscillating error term is required.
+Likewise the approximation exponent is at least
+\[
+ \delta_*:=\frac{b-c}{a+c}
+       =0.22521567851203716390\ldots.
+\]
+Reducing a fraction can only improve the stated denominator-based
+approximation inequality. With the rigorous upper bound
+\eqref{eq:cup} and the spectral intervals in Section~1, the strict rounded
+conclusions are $\delta>0.22521$ and $\mu(\zeta(3))<5.4402$.
+
+\section*{6. Why the analytic estimates apply to this exact solution}
+Let $\mathbf A_N,\mathbf B_N,\mathbf C_N$ be the three rows of
+$\mathcal C_N$, and put
+$\mathbf S_N=\zeta(4)\mathbf A_N+\zeta(3)\mathbf B_N+\mathbf C_N$.
+The exact contour representation is
+\[
+ S_{Nj}=\frac1{2\pi i}\int_{2N+1/2-i\infty}^{2N+1/2+i\infty}
+ \left(\frac\pi{\sin\pi t}\right)^2(-t)^jR_N(t)\,\dd t.
+\]
+Closing to the right gives the derivative sum in Section~2, with its displayed
+minus sign. On this contour write $t=2N+\tfrac12+iy$. Directly from the factors,
+\[
+ |R_N(t)|\le \frac1{48N^4}
+ \exp\left((15\log210-10\log24)N+\frac{29}{14}|y|\right).
+\]
+The factor $|\pi/\sin(\pi t)|^2$ decays as $e^{-2\pi|y|}$.
+Consequently all three components of $\mathbf S_N$ are bounded by a
+polynomial in $N$ times $e^{c_0N}$, where
+\[
+ c_0=15\log210-10\log24=48.4260746572\ldots<b.
+\]
+This excludes the two growing characteristic modes.
+
+Here is an elementary justification even though these two roots are
+nonreal. In a fixed real basis the limiting matrix is a scalar of modulus
+$e^{-a}$ on one coordinate and $e^b$ times a rotation on the other two.
+For sufficiently small perturbations, the cone in which the latter
+two-coordinate norm is at least the first-coordinate modulus is forward
+invariant and expands at any prescribed rate slightly less than $e^b$.
+Our bound $e^{c_0N}$ prevents entry into that cone. Outside it, the first
+coordinate bounds the whole vector and contracts at a rate arbitrarily
+close to $e^{-a}$. Polynomial gauges do not change exponential rates. Thus
+\[
+ \|\mathbf S_N\|\le e^{-aN+o(N)}.
+\]
+Moreover $\|\mathbf A_N\|\le e^{bN+o(N)}$ and
+$\det V_N=e^{(2b-a)N+o(N)}$. The exact cross-product identity is
+\[
+ (\z v-u)V_N^{-T}
+       =-\frac{\mathbf A_N\times\mathbf S_N}{3\det V_N}.
+\]
+It proves \eqref{eq:error}; the inverse-transpose product bound proves
+\eqref{eq:qgrowth}. These arguments give the required upper bounds without
+any assumption about the phase of the complex modes.
+
+\section*{7. Coefficient identities and the boundary constant}
+The following elementary formalism makes the all-$N$ claims independent of
+numerical recognition of zeta values. If all poles of $f$ are integers at
+most $K$, write its polynomial and partial-fraction decomposition and define
+\[
+ \mathcal L_K\!\left[\sum_m p_mt^m+
+               \sum_{h,r}\frac{c_{hr}}{(t-h)^r}\right]
+ =\sum_m p_m B_m(K+1)+
+       \sum_{h,r}r c_{hr}(Z_{r+1}-H_{K-h}^{(r+1)}).
+\]
+Here $Z_r$ are independent formal symbols, $B_1(x)=x-\tfrac12$, and
+$B_m(x)$ are Bernoulli polynomials. For a proper rational function this
+is the formal value of $-\sum_{t>K}f'(t)$. Its exact shift identities are
+\[
+ \mathcal L_K[f(t)-f(t-1)]=f'(K),\qquad
+ \mathcal L_K[f]-\mathcal L_{K-1}[f]=f'(K),
+\]
+when the indicated functions have no pole at the boundary.
+For proper parts these follow by telescoping harmonic sums; for polynomials
+they are the identity $B_m(x+1)-B_m(x)=mx^{m-1}$.
+
+After reflecting the first two upper gamma factors, the Meijer kernel is
+$(\pi/\sin\pi t)^2r_{a,b}(t)$, with rational $r_{a,b}$. It satisfies
+\[
+ \frac{r(t)}{r(t-1)}=
+ \frac{\prod_j(t-1+b_j)}{\prod_i(t-1+a_i)}.
+\]
+With $D(\theta)=\prod_i(\theta-a_i+1)-\prod_j(\theta-b_j)$ and
+$g(t)=\prod_j(t+b_j)r(t)$, this gives
+\[
+ D(-t)r(t)=g(t)-g(t-1).
+\]
+Whenever $g'(K)=0$, the four formal moments of $r,-tr,t^2r,-t^3r$
+therefore satisfy exactly the fourth-order companion relation used by the
+CMF. The axis transformations follow directly from $\Gamma(t+1)=t\Gamma(t)$.
+
+For the original parameters, first lower $a_2$ by $16N$ and $a_3$ by $17N$.
+The resulting double zeros at $1,\ldots,2N$ allow the cutoff to move from
+$0$ to $2N$. Then raise the three positive upper parameters, raise the
+positive lower parameters, and finally lower the two negative lower
+parameters. Along this path the leading companion coefficient
+$5-\sum a_i+\sum b_j$ stays positive; every axis matrix is invertible.
+The boundary factor in $g$ has a double zero throughout. This proves
+\eqref{eq:originalidentity} by exact transport from $N=0$.
+
+For the dual parameters $a'=1-a$, $b'=-b$, the initial rational kernel is
+$(s-1)/s^2$ and its four formal moments are
+\[
+ g_0=(Z_2-2Z_3,\ Z_2-1,\ -\tfrac12,\ \tfrac13).
+\]
+First lower the three nonpositive upper parameters. Triple zeros at
+$1,\ldots,N$ allow the cutoff to move to $K=N$. Then raise the two positive
+upper parameters, raise the positive lower parameters, and lower the
+negative lower parameters last. The companion coefficient remains positive
+and all shifts are nonsingular; $g'(N)=0$ throughout. Thus these formal
+moments have the exact dual CMF transport, denoted $D_N^{\mathrm{dual}}$.
+
+The polynomial matrix $J_N$ in Section~2 is the Lagrange concomitant of
+$z\prod_i(\theta+1-a_i)-\prod_j(\theta-b_j)$ and its formal adjoint. It obeys
+the exact identity
+\[
+ W_NJ_N(D_N^{\mathrm{dual}})^T=J_0.
+\]
+This can also be verified as a polynomial identity for a generic elementary
+upper shift and lower shift, then multiplied along the path. Its exact
+symbolic certificate is included with the proof files. The shift identities
+are first multiplied at generic parameters and only the complete transports
+are then specialized. The original and dual nonsingular paths described
+above show that both complete transports have regular specializations;
+a common path need not have nonsingular intermediate charts on both sides.
+Set $w_p=(-1,0,1/2,-1/3)$ and $w_q=(-2,0,0,0)$. Then
+\[
+ g_0=-w_p+Z_3w_q+(Z_2-1)(1,1,0,0),
+\]
+and $(1,1,0,0)$ is in the relevant kernel of $J_0$. Pairing and transport
+therefore give $g_NJ_N[0\!:\!3,:]^T=Z_3vT_N-uT_N$ coefficientwise.
+
+At the endpoint substitute $s=t+12N+1$. The kernel becomes
+$(-1)^NR_N^*(t)$, and the first summation index becomes $t=-11N$.
+The third row of $J_N$ multiplies the kernel by $-(t+\kappa_N)$.
+Its polynomial part is $-1$, whose formal value is $-1$.
+This proves \eqref{eq:dualidentity}, including its sign, normalization,
+lower limit and boundary constant. The other two rows give the integer
+polynomials $Q_{Nj}$ used above. This proof is entirely coefficientwise.
+
+\appendix
+\section*{Appendix: the exact prime-exponent profile}
+In the following table $(l,r)$ is an open interval. The first exponent is
+used for $0<N/p<1$, and the second for the fractional part of $N/p>1$.
+Boundary primes have already been accounted for separately.
+\begin{longtable}{rrrr}
+\toprule $l$&$r$&$e_0$&$e_1$\\\midrule\endhead
+$0$&$\frac{1}{18}$&0&3\\
+$\frac{1}{18}$&$\frac{1}{17}$&1&3\\
+$\frac{1}{17}$&$\frac{1}{16}$&2&3\\
+$\frac{1}{16}$&$\frac{1}{15}$&3&3\\
+$\frac{1}{15}$&$\frac{1}{13}$&4&4\\
+$\frac{1}{13}$&$\frac{1}{12}$&3&3\\
+$\frac{1}{12}$&$\frac{1}{11}$&2&2\\
+$\frac{1}{11}$&$\frac{1}{10}$&1&1\\
+$\frac{1}{10}$&$\frac{2}{19}$&0&0\\
+$\frac{2}{19}$&$\frac{1}{8}$&1&1\\
+$\frac{1}{8}$&$\frac{2}{15}$&2&2\\
+$\frac{2}{15}$&$\frac{2}{13}$&3&3\\
+$\frac{2}{13}$&$\frac{3}{17}$&2&2\\
+$\frac{3}{17}$&$\frac{2}{11}$&3&3\\
+$\frac{2}{11}$&$\frac{3}{13}$&2&2\\
+$\frac{3}{13}$&$\frac{4}{17}$&1&1\\
+$\frac{4}{17}$&$\frac{3}{11}$&2&2\\
+$\frac{3}{11}$&$\frac{5}{18}$&1&1\\
+$\frac{5}{18}$&$\frac{5}{17}$&2&2\\
+$\frac{5}{17}$&$\frac{3}{10}$&3&3\\
+$\frac{3}{10}$&$\frac{4}{11}$&2&2\\
+$\frac{4}{11}$&$\frac{7}{19}$&1&1\\
+$\frac{7}{19}$&$\frac{5}{13}$&2&2\\
+$\frac{5}{13}$&$\frac{7}{18}$&1&1\\
+$\frac{7}{18}$&$\frac{5}{12}$&2&2\\
+$\frac{5}{12}$&$\frac{8}{19}$&1&1\\
+$\frac{8}{19}$&$\frac{5}{11}$&2&2\\
+$\frac{5}{11}$&$\frac{8}{17}$&1&1\\
+$\frac{8}{17}$&$\frac{9}{19}$&2&2\\
+$\frac{9}{19}$&$\frac{1}{2}$&3&3\\
+$\frac{1}{2}$&$\frac{8}{15}$&2&2\\
+$\frac{8}{15}$&$\frac{7}{13}$&3&3\\
+$\frac{7}{13}$&$\frac{6}{11}$&2&2\\
+$\frac{6}{11}$&$\frac{9}{16}$&1&1\\
+$\frac{9}{16}$&$\frac{7}{12}$&2&2\\
+$\frac{7}{12}$&$\frac{10}{17}$&1&1\\
+$\frac{10}{17}$&$\frac{7}{11}$&2&2\\
+$\frac{7}{11}$&$\frac{11}{17}$&1&1\\
+$\frac{11}{17}$&$\frac{11}{16}$&2&2\\
+$\frac{11}{16}$&$\frac{9}{13}$&3&3\\
+$\frac{9}{13}$&$\frac{8}{11}$&2&2\\
+$\frac{8}{11}$&$\frac{11}{15}$&1&1\\
+$\frac{11}{15}$&$\frac{14}{19}$&2&2\\
+$\frac{14}{19}$&$\frac{3}{4}$&3&3\\
+$\frac{3}{4}$&$\frac{13}{16}$&2&2\\
+$\frac{13}{16}$&$\frac{9}{11}$&3&3\\
+$\frac{9}{11}$&$\frac{16}{19}$&2&2\\
+$\frac{16}{19}$&$\frac{7}{8}$&3&3\\
+$\frac{7}{8}$&$\frac{15}{17}$&2&2\\
+$\frac{15}{17}$&$\frac{9}{10}$&3&3\\
+$\frac{9}{10}$&$\frac{10}{11}$&2&2\\
+$\frac{10}{11}$&$\frac{11}{12}$&1&1\\
+$\frac{11}{12}$&$\frac{15}{16}$&0&0\\
+$\frac{15}{16}$&$\frac{17}{18}$&2&2\\
+$\frac{17}{18}$&$\frac{18}{19}$&3&3\\
+$\frac{18}{19}$&$1$&4&4\\
+\bottomrule
+\end{longtable}
+
+\noindent\textbf{Certificate scope.} The denominator formula and the
+coefficient identities are all-$N$ arguments. The $270$ floor chambers and
+their endpoint states are checked with exact arithmetic. The upper bound
+$c<38.784$ also has an integer-only certificate. Numerical trajectory
+checks were confined to depth $500$; none is used as a substitute for an
+all-$N$ identity or for the arithmetic growth argument.
+\end{document}

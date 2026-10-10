@@ -1,0 +1,18 @@
+{
+  "status": "PASSED_EXACT_RATIONAL_CERTIFICATE",
+  "cubic_has_one_positive_real_and_two_nonreal_conjugate_roots": true,
+  "positive_root_bracket_verified": true,
+  "a_interval": [
+    "53287583322620205267/1000000000000000000",
+    "13321895830655051317/250000000000000000"
+  ],
+  "b_interval": [
+    "929999311325538673/15625000000000000",
+    "59519955924834475073/1000000000000000000"
+  ],
+  "arithmetic_upper_bound": "96959983625497339/2500000000000000",
+  "delta_lower_outward": "225215676775040253/1000000000000000000",
+  "mu_upper_outward": "42501470643032199/7812500000000000",
+  "conclusion": "delta > 0.22521567; mu(zeta(3)) < 5.44019",
+  "method": "Exact cubic signs and discriminant; logarithms via 40-term atanh series with rational remainder bound; exact rational arithmetic throughout."
+}

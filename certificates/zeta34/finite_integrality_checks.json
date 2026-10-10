@@ -1,0 +1,42 @@
+[
+  {
+    "N": 1,
+    "all_nine_entries_integral": true,
+    "multiplier_bits": 83
+  },
+  {
+    "N": 2,
+    "all_nine_entries_integral": true,
+    "multiplier_bits": 169
+  },
+  {
+    "N": 4,
+    "all_nine_entries_integral": true,
+    "multiplier_bits": 343
+  },
+  {
+    "N": 8,
+    "all_nine_entries_integral": true,
+    "multiplier_bits": 673
+  },
+  {
+    "N": 16,
+    "all_nine_entries_integral": true,
+    "multiplier_bits": 1330
+  },
+  {
+    "N": 32,
+    "all_nine_entries_integral": true,
+    "multiplier_bits": 2686
+  },
+  {
+    "N": 64,
+    "all_nine_entries_integral": true,
+    "multiplier_bits": 5349
+  },
+  {
+    "N": 100,
+    "all_nine_entries_integral": true,
+    "multiplier_bits": 8311
+  }
+]

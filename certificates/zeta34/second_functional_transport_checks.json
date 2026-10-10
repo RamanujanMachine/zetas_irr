@@ -1,0 +1,24 @@
+[
+  {
+    "N": 1,
+    "checked_axis_steps": 72,
+    "all_formal_coefficient_steps_match": true,
+    "exact_pairing_identity": true,
+    "all_three_readout_columns_match": true,
+    "minimum_theta4_coefficient": 4,
+    "cutoff_unshifted": 2,
+    "cutoff_shifted_first_summand": -10,
+    "all_g_boundary_zeros_have_order_at_least_three": true
+  },
+  {
+    "N": 2,
+    "checked_axis_steps": 144,
+    "all_formal_coefficient_steps_match": true,
+    "exact_pairing_identity": true,
+    "all_three_readout_columns_match": true,
+    "minimum_theta4_coefficient": 4,
+    "cutoff_unshifted": 4,
+    "cutoff_shifted_first_summand": -20,
+    "all_g_boundary_zeros_have_order_at_least_three": true
+  }
+]

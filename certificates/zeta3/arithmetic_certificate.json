@@ -1,0 +1,16 @@
+{
+  "status": "INTEGER_ONLY_INTEGRAL_UPPER_BOUND_CERTIFIED",
+  "periods_summed": 4096,
+  "rounding_denominator": 10000000000000000,
+  "initial_numerator": "9967051",
+  "initial_denominator": "272272",
+  "periodic_mean_numerator": 1313791,
+  "periodic_mean_denominator": 604656,
+  "tail_numerator": 1313791,
+  "tail_denominator": 2476670976,
+  "upper_numerator": 387839934501989356,
+  "upper_denominator": 10000000000000000,
+  "upper_decimal": "38.7839934501989356",
+  "target": "4848/125=38.784",
+  "strictly_below_target": true
+}

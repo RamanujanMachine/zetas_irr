@@ -1,0 +1,12 @@
+{
+  "claim": "1, zeta(3), zeta(4) are linearly independent over Q; every nonzero rational pair A,B gives irrational A*zeta(3)+B*zeta(4)",
+  "method": "Same MG55 trajectory; first and second derivative dual residue functionals; all-prime common multiplier; invertible three-column integer approximation matrix",
+  "denominator_cost_upper": "57.7839935097896417",
+  "linear_form_decay_lower": "59.51995592483",
+  "common_delta_strict_lower": "0.015629",
+  "all_n_steps": "Coefficientwise contiguity and pairing identities; explicit full-Legendre integer multiplier; exceptional-prime and PNT argument; integer-matrix contradiction",
+  "exact_computation": "270 rational floor chambers with endpoint states, integer-only integral bound, independent symbolic matrix and pairing certificates",
+  "finite_checks": "All three second-functional readouts through depth20; all216 elementary steps atN1,N2; allnine integral entries throughN100; 600 nonboundary profile comparisons throughN500",
+  "lean_status": "Not formalized or checked in Lean",
+  "literature": "Li Lai arXiv:2610.06838v1 states the same linear-independence conclusion; no novelty claim for the result itself"
+}

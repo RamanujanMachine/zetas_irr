@@ -1,0 +1,5 @@
+{
+  "upper_decrement_identity": true,
+  "lower_increment_identity": true,
+  "method": "Exact SymPy rational simplification of all16entries withgenericmonicpolynomialcoefficients; inversestepsfollowbyinversion."
+}

@@ -1,0 +1,286 @@
+name = "zetas_irr"
+version = "0.1.0"
+defaultTargets = ["ZetasIrr"]
+
+[leanOptions]
+pp.unicode.fun = true
+autoImplicit = false
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "master"
+
+[[lean_lib]]
+name = "ZetasIrr"
+
+[[lean_lib]]
+name = "defs"
+
+[[lean_lib]]
+name = "cross_product_readout"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "Delta_mul_Rmat_integral"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "valuation_bound"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "ZetasAux"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "coeffMat_zero"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "det_V_eq"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "pairing_identity"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "growth_estimates"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "E34_le"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "derivSum_eq_realize_Lfun"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "log_Delta_le"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "Mfun_sub_Mfun_pred"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "CMF_basic"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "CMF_transport"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "CMF_pairing"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "CMF_path"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "CMF_kernel"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "CMF_det"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "CMF_main"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "Chamber_dsl"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "Chamber_reduce"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "Chamber_cert"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "Chamber_main"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "Chamber_cert0"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "Chamber_cert1"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "Chamber_cert2"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "Chamber_cert3"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "Chamber_cert4"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "Chamber_cert5"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "Chamber_cert6"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "Chamber_cert7"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "Chamber_cert8"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "Chamber_cert9"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "Chamber_certAll"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "Chamber_cert10"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "Chamber_cert11"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "Chamber_cert12"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "Chamber_cert13"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "Chamber_cert14"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "Chamber_cert15"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "Chamber_cert16"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "Chamber_cert17"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "Chamber_cert18"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "Chamber_cert19"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "Chamber_cert20"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "Chamber_cert21"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "Chamber_cert22"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "Chamber_cert23"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "Chamber_cert24"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "Chamber_cert25"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "Chamber_cert26"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "Chamber_cert27"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "Chamber_cert28"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "Chamber_cert29"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "GW_fast"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "GW_poly"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "GW_cert0"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "GW_cert1"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "GW_cert2"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "GW_cert3"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "GW_cert4"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "GW_cert5"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "GW_bridge"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "GW_limit"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "GW_cone"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "GW_Sbound"
+srcDir = "blueprints"
+
+[[lean_lib]]
+name = "readout_error_bound"
+srcDir = "blueprints"
