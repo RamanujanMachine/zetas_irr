@@ -1,0 +1,377 @@
+\subsection{The \(\zeta(3)\) and \(\zeta(4)\) construction}
+
+We write $(\mathcal M,x_0,v)_F$ for the forward scheme and
+$(\mathcal M,x_0,v)_D$ for the dual scheme of a CMF $\mathcal M$ with
+starting point $x_0$ and direction $v$.
+
+\begin{theorem}
+\label{thm:z34-limit}
+Let $A,B\in\mathbb Z$, $x_0=(0,0,1,1,1;1,1,1,1)$ and
+$v_F=(-14,-15,13,14,12;1,2,3,4)$.
+The forward scheme
+\[
+\bigl({}_5F_4(1),\,x_0,\,v_F\bigr)_F
+\]
+has initial condition and projection vector
+\[
+I_F=\begin{pmatrix}0&0&-6A&3A-2B\\12&0&0&0\end{pmatrix},
+\qquad v=\begin{pmatrix}1\\0\\0\\0\end{pmatrix}.
+\]
+Writing $W_F(N)=F_{x_0,v_F}(0)\cdots F_{x_0,v_F}(N-1)$, the ratio
+\[
+R_N=\frac{(I_FW_F(N)v)_1}{(I_FW_F(N)v)_2}
+\]
+converges to $A\zeta(3)+B\zeta(4)$, with exponential error bound
+\[
+\limsup_{N\to\infty}|R_N-A\zeta(3)-B\zeta(4)|^{1/N}
+\leq\tau:=\frac{|\rho_4|}{|\rho_1|}
+\approx1.019\cdot10^{-49},
+\]
+where the roots are those of Proposition~\ref{prop:z34-rates}.
+\end{theorem}
+Unlike the preceding case, we cannot identify the full dual Meijer G
+scheme with this forward scheme by an invertible rational coboundary.
+Instead, a rank-three intertwining matrix connects the selected walks.
+We show that this connection preserves the dominant dual contribution
+and the initial-state identity determining the limit.
+
+\begin{proposition}
+\label{prop:z34-coboundary}
+Let $y_0=(0,0,1,1,2;0,0,0,0,0)$ and
+$v_G=(-16,-17,11,12,10;-2,-1,0,1,2)$.
+The dual scheme $(G^{5,2}_{5,5}(1),y_0,v_G)_D$, restricted to its first
+three coordinates, is coboundary equivalent, up to scalar normalization,
+to the forward scheme $({}_5F_4(1),x_0,v_F)_F$ on a three-dimensional
+invariant space $\operatorname{im}E(n)$.
+\end{proposition}
+
+\begin{proof}
+The coboundary $H(n)$, basis matrix $E(n)$ for the invariant subspaces,
+and scalar factors $A(n)$ and $B(n)$ are given in the supplied code,
+which verifies
+\[
+F_{x_0,v_F}(n)E(n+1)=E(n)\widehat F(n),
+\qquad
+\widehat F(n)=\frac{A(n)}{B(n)}H(n)Q(n)^{-T}H(n+1)^{-1}.
+\]
+Here $Q(n)$ is the leading $3\times3$ block of $G_{y_0,v_G}(n)$,
+$\widehat F(n)=LF_{x_0,v_F}(n)E(n+1)$, and $L$ selects the first, third
+and fourth coordinates, with $LE(n)=I_3$.
+The restriction of the dual Meijer G matrix follows from
+\[
+G_{y_0,v_G}(n)=\begin{pmatrix}Q(n)&b(n)\\0&-1\end{pmatrix},
+\qquad
+G_{y_0,v_G}(n)^{-T}
+=\begin{pmatrix}Q(n)^{-T}&0\\b(n)^TQ(n)^{-T}&-1\end{pmatrix}.
+\]
+Thus a row $(u,0)$ is mapped to $(uQ(n)^{-T},0)$, so the first
+three coordinates form an invariant space for the dual walk.
+Put
+\[
+J=\begin{pmatrix}1&0&0&0\\0&1&0&0\\0&0&1&0\end{pmatrix},
+\qquad K(n)=E(n)H(n)J,
+\qquad R(n)=\frac{A(n)}{B(n)}.
+\]
+The matrix $K(n)$ has rank three, and the preceding identities imply
+\[
+F_{x_0,v_F}(n)K(n+1)=R(n)K(n)G_{y_0,v_G}(n)^{-T}.
+\]
+Consequently, writing $W_G(N)=G_{y_0,v_G}(0)\cdots
+G_{y_0,v_G}(N-1)$, we obtain the exact walk identity
+\[
+W_F(N)K(N)
+=\left(\prod_{n=0}^{N-1}R(n)\right)K(0)W_G(N)^{-T}.
+\]
+This identity does not require $K(n)$ to be invertible.
+\end{proof}
+Along the trajectory define
+\[
+\mathcal{G}_n(z)=G_{5,5}^{5,2}\!\left(
+ z\;\middle|\;
+ \begin{matrix}
+ -16n,-17n;\ 1+11n,1+12n,2+10n\\
+ -2n,-n,0,n,2n
+ \end{matrix}\right),
+\qquad \theta=z\,\frac{d}{dz}.
+\]
+
+\begin{proposition}
+\label{prop:z34-initial-values}
+Let
+\[
+\mathcal{S}_G(n)=\bigl(
+\mathcal{G}_n(1),\ (\theta\mathcal{G}_n)(1),\
+(\theta^2\mathcal{G}_n)(1),\ (\theta^3\mathcal{G}_n)(1)\bigr),
+\]
+\[
+I_G=\begin{pmatrix}2B&-3A-2B&3A&0\\0&0&6&0\end{pmatrix}.
+\]
+Then
+\[
+I_G\mathcal{S}_G(0)^T
+=6\begin{pmatrix}A\zeta(3)+B\zeta(4)\\1\end{pmatrix}.
+\]
+\end{proposition}
+
+\begin{proof}
+The Mellin--Barnes integral in the proof of
+Proposition~\ref{prop:z34-growth}, with $n=0$, and the reflection formula
+\cite[Eq.~5.5.3]{NIST:DLMF} give
+\[
+\mathcal{G}_0(z)=\frac{1}{2\pi i}\int_{\frac12+i\mathbb R}
+\frac{\pi^2z^{-s}}{\sin^2(\pi s)s^3(s+1)}\,ds.
+\]
+Applying $\theta^k$ multiplies the integrand by $(-s)^k$.
+At $z=1$, close the contour to the right along lines
+$\operatorname{Re}s=m+\tfrac12$. For $0\leq k\leq3$ their integrals are
+$O(m^{k-4})\to0$; the horizontal integrals vanish exponentially.
+The poles at positive integers are double, and the clockwise orientation gives
+\[
+(\theta^k\mathcal{G}_0)(1)
+=(-1)^{k+1}\sum_{\ell=1}^{\infty}
+\left[\frac{d}{ds}\frac{1}{s^{3-k}(s+1)}\right]_{s=\ell}.
+\]
+Partial fractions give
+\[
+\mathcal{S}_G(0)=\bigl(
+1-2\zeta(3)+3\zeta(4),\ 1-2\zeta(3),\ 1,\ 1-\zeta(2)\bigr),
+\]
+and multiplication by $I_G$ gives the claimed identity.
+\end{proof}
+
+\begin{proposition}
+\label{prop:z34-rates}
+The trajectory matrix $G_{y_0,v_G}(n)$ has exponential growth rates given by
+two conjugate dominant roots
+\[
+\rho_{1,2}\approx(2.803\pm6.487i)\cdot10^{25},
+\qquad \rho_3=-1,
+\qquad \rho_4\approx7.203\cdot10^{-24}.
+\]
+No factorial normalization is needed. The characteristic roots at infinity
+of the restricted matrix $Q(n)$ are $\rho_1,\rho_2,\rho_4$.
+\end{proposition}
+
+\begin{proof}
+The roots are those of the characteristic polynomial at infinity, extracted
+in the supplied code. The factor corresponding to $\rho_3=-1$ is removed
+by the block restriction in Proposition~\ref{prop:z34-coboundary}.
+\end{proof}
+
+\begin{proposition}
+\label{prop:z34-growth}
+Let
+\[
+\eta=\frac{16^{16}15^{30}2^2 3^3 4^4}{13^{13}12^{12}30^{30}}
+\left(\frac32\right)^{55}\approx8.517\cdot10^{-4}<1.
+\]
+Then
+\[
+(\theta^k\mathcal{G}_n)(1)=O(n^k\eta^n),
+\qquad k=0,1,2,3.
+\]
+\end{proposition}
+
+\begin{proof}
+Put $L=14n+1$ and $C_n=(14n)!(16n)!/[(11n)!^2(8n+1)!]$.
+The Mellin--Barnes representation \cite[Eq.~16.17.1]{NIST:DLMF} is
+\[
+\mathcal{G}_n(z)=\frac{1}{2\pi i}
+\int_{2n+\frac12-i\infty}^{2n+\frac12+i\infty}
+\frac{
+ \Gamma(16n+1-s)\Gamma(17n+1-s)
+}{
+ \Gamma(s+11n+1)\Gamma(s+12n+1)\Gamma(s+10n+2)
+}\prod_{j=-2}^{2}\Gamma(s+jn)\,z^{-s}\,ds.
+\]
+The contour is traversed from bottom to top. Its left pole families
+lie in $s\leq2n$ and its right pole families in $s\geq16n+1$,
+so it separates them for every $n$.
+With $s=2n+w$, the contour becomes the fixed line
+$\mathcal C=\tfrac12+i\mathbb R$.
+This is a change of variable; no poles are crossed.
+The integral converges absolutely for $z>0$.
+
+Apply Euler's beta integral \cite[Eq.~5.12.1]{NIST:DLMF} to
+\[
+\frac{\Gamma(w+2n)}{\Gamma(w+13n+1)},\qquad
+\frac{\Gamma(w+3n)}{\Gamma(w+14n+1)},\qquad
+\frac{\Gamma(w+4n)}{\Gamma(w+12n+2)}.
+\]
+This gives
+\[
+\begin{aligned}
+\mathcal{G}_n(z)
+&=\frac{z^{-2n}}{2\pi i(11n)!^2(8n+1)!}
+\int_{\mathcal C}
+\Gamma(w)\Gamma(w+n)\Gamma(14n+1-w)\Gamma(15n+1-w)z^{-w}\\
+&\quad\times\left[\int_{[0,1]^3}
+x^{w+2n-1}y^{w+3n-1}t^{w+4n-1}
+(1-x)^{11n}(1-y)^{11n}(1-t)^{8n+1}
+\,dx\,dy\,dt\right]dw.
+\end{aligned}
+\]
+All beta parameters have positive real parts on $\mathcal C$.
+Apply Euler's integral once more:
+\[
+\Gamma(w+n)\Gamma(15n+1-w)
+=(16n)!\int_0^1 r^{w+n-1}(1-r)^{15n-w}\,dr.
+\]
+Absolute convergence permits interchanging the integrals.
+Writing $u=xyt$, the remaining integral on the same contour is
+\cite[Eq.~5.13.1]{NIST:DLMF}
+\[
+\frac{1}{2\pi i}\int_{\mathcal C}
+\Gamma(w)\Gamma(14n+1-w)
+\left(\frac{z(1-r)}{ur}\right)^{-w}dw
+=(14n)!\left(\frac{ur}{z(1-r)+ur}\right)^{14n+1}.
+\]
+Its argument is positive and its contour condition
+$0<\tfrac12<14n+1$ holds for every $n$.
+Consequently, we obtain the positive integral
+\[
+\mathcal{G}_n(z)=z^{-2n}C_n\int_{[0,1]^4}
+\frac{
+x^{16n}y^{17n}t^{18n}r^{15n}
+(1-x)^{11n}(1-y)^{11n}(1-t)^{8n+1}(1-r)^{15n}
+}{[z(1-r)+xytr]^{14n+1}}
+\,dx\,dy\,dt\,dr.
+\]
+In particular, $z=1$ can be substituted directly.
+Since $1-r+xytr\geq xyt$, for $n\geq1$ Euler's integral gives
+\[
+\begin{aligned}
+0<\mathcal{G}_n(1)
+&\leq C_n\int_{[0,1]^4}
+x^{2n-1}y^{3n-1}t^{4n-1}r^{15n}
+(1-x)^{11n}(1-y)^{11n}(1-t)^{8n+1}(1-r)^{15n}
+\,dx\,dy\,dt\,dr\\
+&=\frac{(16n)!(15n)!^2(2n-1)!(3n-1)!(4n-1)!}
+{(13n)!(12n+1)!(30n+1)!}
+=:D_n.
+\end{aligned}
+\]
+The factorial ratios satisfy, for $n\geq2$,
+\[
+\frac{D_{n+1}}{D_n}
+\leq
+\frac{16^{16}15^{30}2^2 3^3 4^4}{13^{13}12^{12}30^{30}}
+\left(\frac{n+1}{n}\right)^{55}
+\leq
+\frac{16^{16}15^{30}2^2 3^3 4^4}{13^{13}12^{12}30^{30}}
+\left(\frac32\right)^{55}
+=:\eta\approx8.517\cdot10^{-4}<1.
+\]
+Here the $55$ numerator factors are bounded above using $n+1$,
+and the $55$ denominator factors are bounded below using $n$.
+Iterating gives, for a constant $C>0$ independent of $n$,
+\[
+0<\mathcal{G}_n(1)\leq D_n\leq C\eta^n\longrightarrow0.
+\]
+
+Finally, $\theta^k$ inserts the factor $(-s)^k$ in the Mellin--Barnes
+integrand. For $k\leq3$, these integrals
+remain absolutely convergent at $z=1$ on the same contour.
+Put $a=2n$. After $s=a+w$, the factor is
+$(-1)^k(w+a)^k$.
+For $n\geq1$ and $k\leq3$, the polynomial $(w+a)^k$ has an expansion
+in the rising factorials $(w)_j$ with nonnegative coefficients.
+Each $(w)_j$ replaces $\Gamma(w)$ by $\Gamma(w+j)$; the same Mellin
+inversion then multiplies the positive integrand at $z=1$ by
+$(L)_j[(1-r)/(1-r+ur)]^j\leq(L)_j$.
+Evaluating the polynomial expansion at $w=L$ bounds the combined
+factor by $(a+L)^k$. Hence
+\[
+|(\theta^k\mathcal{G}_n)(1)|
+\leq
+(16n+1)^kD_n
+\leq C(16n+1)^k\eta^n\longrightarrow0,
+\qquad 0\leq k\leq3.
+\]
+Since $16n+1=O(n)$, the claim follows.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:z34-limit}]
+By Proposition~\ref{prop:z34-growth}, every component of the
+state vector of $(G^{5,2}_{5,5}(1),y_0,v_G)_F$ decays exponentially, so by
+Proposition~\ref{prop:z34-rates} it does not grow at any of the rates
+$|\rho_1|,|\rho_2|,|\rho_3|$; hence the state is the recessive solution.
+Write $\widehat{\mathcal S}_G(n)$ for its first three components and
+$\widehat I_G$ for the first three columns of $I_G$.
+The state relation and the block form in
+Proposition~\ref{prop:z34-coboundary} give
+\[
+\mathcal S_G(n+1)=\mathcal S_G(n)G_{y_0,v_G}(n),
+\qquad
+\widehat{\mathcal S}_G(n+1)=\widehat{\mathcal S}_G(n)Q(n).
+\]
+Hence $\widehat{\mathcal S}_G(n)$ is the recessive solution of $Q(n)$
+obtained from the actual Meijer G state. Since $I_G=(\widehat I_G\;0)$,
+\[
+\widehat I_G\widehat{\mathcal S}_G(0)^T
+=I_G\mathcal S_G(0)^T
+=6\begin{pmatrix}A\zeta(3)+B\zeta(4)\\1\end{pmatrix}.
+\]
+The block form also gives the exact restriction
+\[
+I_GW_G(N)^{-T}
+=\bigl(\widehat I_GW_Q(N)^{-T}\;0\bigr),
+\qquad W_Q(N)=Q(0)\cdots Q(N-1).
+\]
+Thus the initial conditions already exclude the $-1$ mode; the
+rank-three connection transfers this restriction to the forward walk.
+By Theorem~\ref{thm:dual-convergence} and
+Proposition~\ref{prop:cmf-initial-limit}, the dual scheme restricted to
+$Q(n)$, with initial condition $\widehat I_G$, converges to
+$(I_G\mathcal{S}_G(0)^T)_1/(I_G\mathcal{S}_G(0)^T)_2$.
+Proposition~\ref{prop:z34-initial-values} proves that this ratio is
+$A\zeta(3)+B\zeta(4)$.
+
+At the source point, the coboundary of
+Proposition~\ref{prop:z34-coboundary} satisfies
+\[
+E(0)=\begin{pmatrix}1&0&0\\0&0&0\\0&1&0\\0&0&1\end{pmatrix},
+\qquad H(0)=\begin{pmatrix}0&0&1\\-1&2&-1\\-2&2&0\end{pmatrix},
+\]
+\[
+I_FE(0)H(0)=2\widehat I_G.
+\]
+Equivalently, $I_FK(0)=2I_G$.
+Consequently,
+\[
+I_FE(0)H(0)\widehat{\mathcal S}_G(0)^T
+=12\begin{pmatrix}A\zeta(3)+B\zeta(4)\\1\end{pmatrix}.
+\]
+Put $e_0=(1,0,0)^T$ and $D(n)=\prod_{j=8}^{12}(jn+1)$.
+The supplied code verifies
+\[
+H(n)^{-1}e_0=\frac{1}{D(n)}
+\begin{pmatrix}1\\10n+1\\(10n+1)^2\end{pmatrix},
+\qquad K(n)J^TH(n)^{-1}e_0=v.
+\]
+Thus the exact walk identity gives
+\[
+I_FW_F(N)v
+=2\left(\prod_{n=0}^{N-1}\frac{A(n)}{B(n)}\right)
+\widehat I_G W_Q(N)^{-T}H(N)^{-1}e_0.
+\]
+The common scalar cancels in the ratio. For
+$T_n=\operatorname{diag}(1,n,n^2)$ and
+$Q_\infty=\lim_{n\to\infty}T_nQ(n)T_{n+1}^{-1}$, the transported
+projection satisfies $D(n)T_n^{-1}H(n)^{-1}e_0\to w=(1,10,100)^T$.
+The supplied code verifies exactly that $Q_\infty$ has distinct
+eigenvalues and
+\[
+\det\bigl[w,\ Q_\infty^{-T}w,\ (Q_\infty^{-T})^2w\bigr]\ne0.
+\]
+Thus $w$ has a nonzero coefficient along every eigenvector in an
+eigenbasis of $Q_\infty^{-T}$, including the eigenvector for the unique
+dominant dual root $\rho_4^{-1}$. By the asymptotics of the system at
+infinity, this contribution survives the exact intertwining identity;
+the rational factors change growth only by polynomial factors.
+The denominator's pairing with the initial state is nonzero, so
+this gives $R_N\to A\zeta(3)+B\zeta(4)$.
+Finally, Proposition~\ref{prop:z34-rates} gives the exponential error
+factor $\tau=|\rho_4|/|\rho_1|$, since $|\rho_1|=|\rho_2|$.
+\end{proof}
+

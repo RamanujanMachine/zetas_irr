@@ -1,0 +1,18 @@
+{
+  "status": "NUMERICAL_CANDIDATE",
+  "scope": "Mathematical handoff with exact computational support; no Lean implementation",
+  "supplied_5f4_script": {
+    "exit_code": 0,
+    "log": "supplied_5f4_check.log"
+  },
+  "spectral_certificate": {
+    "exit_code": 0,
+    "exact_tau_upper": "102/10^51",
+    "log_rate_lower_exceeds": "112.8"
+  },
+  "latex": {
+    "compiler": "Codex built-in document compiler",
+    "result": "success"
+  },
+  "mathematical_dependency": "Modal-basis theorem for the stated rational difference system; all modules must be formalized and connected."
+}

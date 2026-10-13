@@ -107,6 +107,7 @@ theorem Delta_mul_Rmat_integral (N : ℕ) (i j : Fin 3) :
     have hR : Rmat 0 = U34 := by
       rw [Rmat, T, hV, inv_one, Matrix.transpose_one, Matrix.mul_one]
     rw [hR, show Delta 0 = 1 from rfl, Nat.cast_one, one_mul]
+    -- this should be U34 ; why is U34 defined over the rats?
     refine ⟨(!![0, -3, 3; 2, -2, 0; 0, 0, 6] : Matrix (Fin 3) (Fin 3) ℤ) i j, ?_⟩
     fin_cases i <;> fin_cases j <;> simp [U34]
   · -- `N ≥ 1`: all valuations of `Δ_N 𝓡_N[i,j]` are `≥ 0`

@@ -1,0 +1,91 @@
+{
+  "status": "NUMERICAL_CANDIDATE",
+  "scope": "Exact finite ingredients for the accompanying arithmetic proof, not a final independence claim",
+  "eight_period_density": "22763660987060292807135900464475002389291589797931744263/1137911390967609212200766394165505379897899492140816000",
+  "eight_period_density_decimal": 20.004774684348217,
+  "strict_density_lower": "29.004",
+  "root_count_x_chambers": 8,
+  "root_count_cell_checks": 257,
+  "excluded_primes": "p<=29 or p*p<=30*n or p divides n",
+  "height": {
+    "root_bracket": [
+      "6007/500",
+      "2403/200"
+    ],
+    "rational_interval_upper_decimal": 65.4515366293622,
+    "chosen_upper": "65.46",
+    "reduced_denominator_limsup_upper_decimal": 112.45522531565179,
+    "eventual_reduced_denominator_exponent": "112.5"
+  },
+  "gauge_scalar_factorial_identity": true,
+  "rational_initial_rows_basis": {
+    "modulus": 101,
+    "reduced_matrix": [
+      [
+        1,
+        89,
+        15
+      ],
+      [
+        0,
+        35,
+        64
+      ],
+      [
+        0,
+        98,
+        61
+      ]
+    ],
+    "determinant_mod_101": 4,
+    "fresh_columns_equal_saved_companion_U0": true
+  },
+  "finite_checks": [
+    {
+      "n": 1,
+      "prime_checks": 0,
+      "all_three_forward_readouts_equal": true
+    },
+    {
+      "n": 2,
+      "prime_checks": 2,
+      "all_three_forward_readouts_equal": true
+    },
+    {
+      "n": 3,
+      "prime_checks": 6,
+      "all_three_forward_readouts_equal": true
+    },
+    {
+      "n": 4,
+      "prime_checks": 11,
+      "all_three_forward_readouts_equal": true
+    },
+    {
+      "n": 5,
+      "prime_checks": 14,
+      "all_three_forward_readouts_equal": true
+    },
+    {
+      "n": 8,
+      "prime_checks": 26,
+      "all_three_forward_readouts_equal": true
+    },
+    {
+      "n": 12,
+      "prime_checks": 39,
+      "all_three_forward_readouts_equal": true
+    },
+    {
+      "n": 20,
+      "prime_checks": 65,
+      "all_three_forward_readouts_equal": true
+    },
+    {
+      "n": 40,
+      "prime_checks": 123,
+      "all_three_forward_readouts_equal": true
+    }
+  ]
+}
+Pairings: [{'L': (8, 13, 13), 'D': (17, 17), 'pairing': (-2, 2, 1, -1, 0)}, {'L': (11, 11, 11), 'D': (14, 19), 'pairing': (1, 0, -1, 2, -2)}, {'L': (9, 9, 14), 'D': (16, 16), 'pairing': (-1, -2, 2, 0, 1)}, {'L': (12, 12, 12), 'D': (18, 18), 'pairing': (2, 1, 0, -2, -1)}, {'L': (11, 11, 14), 'D': (18, 18), 'pairing': (1, 0, 2, -2, -1)}, {'L': (9, 9, 12), 'D': (14, 16), 'pairing': (-1, -2, 0, 2, 1)}, {'L': (10, 10, 10), 'D': (14, 16), 'pairing': (0, -1, -2, 2, 1)}, {'L': (9, 11, 14), 'D': (17, 17), 'pairing': (1, -2, 2, -1, 0)}]

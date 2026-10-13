@@ -1,0 +1,10 @@
+Invariant restriction and exact coboundary: True
+Rank-three intertwining and exact full walk identity: True
+Meijer G initial identity and transport to 5F4: True
+Initial conditions exclude the -1 mode; denominator pairing is 12: True
+Projection vector couples to every retained limiting mode: True
+rho_1 = 28028413201118511495797065.22034012710218 - 64865890015931437320321054.14507349207507*I
+rho_2 = 28028413201118511495797065.22034012710218 + 64865890015931437320321054.14507349207507*I
+rho_3 = -1.000000000000000000000000000000000000000
+rho_4 = 7.202721273276511926282264010546996958113E-24
+Exponential error factor: 1.019e-49

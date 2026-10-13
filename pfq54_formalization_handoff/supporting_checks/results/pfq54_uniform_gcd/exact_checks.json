@@ -1,0 +1,443 @@
+{
+  "status": "NUMERICAL_CANDIDATE",
+  "scope": "Exact finite ingredients for the accompanying arithmetic proof, not a final independence claim",
+  "normalizations": [
+    {
+      "L": [
+        8,
+        13,
+        13
+      ],
+      "D": [
+        17,
+        17
+      ],
+      "pairing": [
+        -2,
+        2,
+        1,
+        -1,
+        0
+      ]
+    },
+    {
+      "L": [
+        11,
+        11,
+        11
+      ],
+      "D": [
+        14,
+        19
+      ],
+      "pairing": [
+        1,
+        0,
+        -1,
+        2,
+        -2
+      ]
+    },
+    {
+      "L": [
+        9,
+        9,
+        14
+      ],
+      "D": [
+        16,
+        16
+      ],
+      "pairing": [
+        -1,
+        -2,
+        2,
+        0,
+        1
+      ]
+    },
+    {
+      "L": [
+        12,
+        12,
+        12
+      ],
+      "D": [
+        18,
+        18
+      ],
+      "pairing": [
+        2,
+        1,
+        0,
+        -2,
+        -1
+      ]
+    },
+    {
+      "L": [
+        11,
+        11,
+        14
+      ],
+      "D": [
+        18,
+        18
+      ],
+      "pairing": [
+        1,
+        0,
+        2,
+        -2,
+        -1
+      ]
+    },
+    {
+      "L": [
+        9,
+        9,
+        12
+      ],
+      "D": [
+        14,
+        16
+      ],
+      "pairing": [
+        -1,
+        -2,
+        0,
+        2,
+        1
+      ]
+    },
+    {
+      "L": [
+        10,
+        10,
+        10
+      ],
+      "D": [
+        14,
+        16
+      ],
+      "pairing": [
+        0,
+        -1,
+        -2,
+        2,
+        1
+      ]
+    },
+    {
+      "L": [
+        9,
+        11,
+        14
+      ],
+      "D": [
+        17,
+        17
+      ],
+      "pairing": [
+        1,
+        -2,
+        2,
+        -1,
+        0
+      ]
+    }
+  ],
+  "profile": [
+    {
+      "lo": "0",
+      "hi": "1/15",
+      "gain": 0
+    },
+    {
+      "lo": "1/15",
+      "hi": "1/13",
+      "gain": 1
+    },
+    {
+      "lo": "1/13",
+      "hi": "1/12",
+      "gain": 2
+    },
+    {
+      "lo": "1/12",
+      "hi": "1/10",
+      "gain": 3
+    },
+    {
+      "lo": "1/10",
+      "hi": "2/15",
+      "gain": 0
+    },
+    {
+      "lo": "2/15",
+      "hi": "2/13",
+      "gain": 1
+    },
+    {
+      "lo": "2/13",
+      "hi": "3/17",
+      "gain": 2
+    },
+    {
+      "lo": "3/17",
+      "hi": "2/11",
+      "gain": 1
+    },
+    {
+      "lo": "2/11",
+      "hi": "1/5",
+      "gain": 2
+    },
+    {
+      "lo": "1/5",
+      "hi": "4/15",
+      "gain": 1
+    },
+    {
+      "lo": "4/15",
+      "hi": "5/17",
+      "gain": 3
+    },
+    {
+      "lo": "5/17",
+      "hi": "3/10",
+      "gain": 2
+    },
+    {
+      "lo": "3/10",
+      "hi": "1/3",
+      "gain": 0
+    },
+    {
+      "lo": "1/3",
+      "hi": "2/5",
+      "gain": 2
+    },
+    {
+      "lo": "2/5",
+      "hi": "4/9",
+      "gain": 1
+    },
+    {
+      "lo": "4/9",
+      "hi": "5/11",
+      "gain": 0
+    },
+    {
+      "lo": "5/11",
+      "hi": "7/15",
+      "gain": 1
+    },
+    {
+      "lo": "7/15",
+      "hi": "9/19",
+      "gain": 3
+    },
+    {
+      "lo": "9/19",
+      "hi": "1/2",
+      "gain": 2
+    },
+    {
+      "lo": "1/2",
+      "hi": "8/15",
+      "gain": 0
+    },
+    {
+      "lo": "8/15",
+      "hi": "6/11",
+      "gain": 1
+    },
+    {
+      "lo": "6/11",
+      "hi": "3/5",
+      "gain": 2
+    },
+    {
+      "lo": "3/5",
+      "hi": "2/3",
+      "gain": 1
+    },
+    {
+      "lo": "2/3",
+      "hi": "11/16",
+      "gain": 3
+    },
+    {
+      "lo": "11/16",
+      "hi": "9/13",
+      "gain": 2
+    },
+    {
+      "lo": "9/13",
+      "hi": "7/10",
+      "gain": 3
+    },
+    {
+      "lo": "7/10",
+      "hi": "11/15",
+      "gain": 0
+    },
+    {
+      "lo": "11/15",
+      "hi": "14/19",
+      "gain": 2
+    },
+    {
+      "lo": "14/19",
+      "hi": "3/4",
+      "gain": 1
+    },
+    {
+      "lo": "3/4",
+      "hi": "4/5",
+      "gain": 2
+    },
+    {
+      "lo": "4/5",
+      "hi": "13/16",
+      "gain": 1
+    },
+    {
+      "lo": "13/16",
+      "hi": "9/11",
+      "gain": 0
+    },
+    {
+      "lo": "9/11",
+      "hi": "16/19",
+      "gain": 1
+    },
+    {
+      "lo": "16/19",
+      "hi": "13/15",
+      "gain": 0
+    },
+    {
+      "lo": "13/15",
+      "hi": "7/8",
+      "gain": 2
+    },
+    {
+      "lo": "7/8",
+      "hi": "15/17",
+      "gain": 3
+    },
+    {
+      "lo": "15/17",
+      "hi": "9/10",
+      "gain": 2
+    },
+    {
+      "lo": "9/10",
+      "hi": "14/15",
+      "gain": 0
+    },
+    {
+      "lo": "14/15",
+      "hi": "17/18",
+      "gain": 2
+    },
+    {
+      "lo": "17/18",
+      "hi": "18/19",
+      "gain": 1
+    },
+    {
+      "lo": "18/19",
+      "hi": "1",
+      "gain": 0
+    }
+  ],
+  "eight_period_density": "22763660987060292807135900464475002389291589797931744263/1137911390967609212200766394165505379897899492140816000",
+  "eight_period_density_decimal": 20.004774684348217,
+  "strict_density_lower": "29.004",
+  "root_count_x_chambers": 8,
+  "root_count_cell_checks": 257,
+  "excluded_primes": "p<=29 or p*p<=30*n or p divides n",
+  "height": {
+    "root_bracket": [
+      "6007/500",
+      "2403/200"
+    ],
+    "rational_interval_upper_decimal": 65.4515366293622,
+    "chosen_upper": "65.46",
+    "reduced_denominator_limsup_upper_decimal": 112.45522531565179,
+    "eventual_reduced_denominator_exponent": "112.5"
+  },
+  "gauge_scalar_factorial_identity": true,
+  "rational_initial_rows_basis": {
+    "modulus": 101,
+    "reduced_matrix": [
+      [
+        1,
+        89,
+        15
+      ],
+      [
+        0,
+        35,
+        64
+      ],
+      [
+        0,
+        98,
+        61
+      ]
+    ],
+    "determinant_mod_101": 4,
+    "fresh_columns_equal_saved_companion_U0": true
+  },
+  "finite_checks": [
+    {
+      "n": 1,
+      "prime_checks": 0,
+      "all_three_forward_readouts_equal": true
+    },
+    {
+      "n": 2,
+      "prime_checks": 2,
+      "all_three_forward_readouts_equal": true
+    },
+    {
+      "n": 3,
+      "prime_checks": 6,
+      "all_three_forward_readouts_equal": true
+    },
+    {
+      "n": 4,
+      "prime_checks": 11,
+      "all_three_forward_readouts_equal": true
+    },
+    {
+      "n": 5,
+      "prime_checks": 14,
+      "all_three_forward_readouts_equal": true
+    },
+    {
+      "n": 8,
+      "prime_checks": 26,
+      "all_three_forward_readouts_equal": true
+    },
+    {
+      "n": 12,
+      "prime_checks": 39,
+      "all_three_forward_readouts_equal": true
+    },
+    {
+      "n": 20,
+      "prime_checks": 65,
+      "all_three_forward_readouts_equal": true
+    },
+    {
+      "n": 40,
+      "prime_checks": 123,
+      "all_three_forward_readouts_equal": true
+    }
+  ]
+}

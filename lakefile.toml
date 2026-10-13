@@ -284,3 +284,275 @@ srcDir = "blueprints"
 [[lean_lib]]
 name = "readout_error_bound"
 srcDir = "blueprints"
+
+[[lean_lib]]
+name = "Pfq54_defs"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "hyp_readout"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "Z_integral"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "permutation_lemma"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "pairing_bound"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "upper_range_bound"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "residue_block"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "G_dvd_Z"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "log_G_ge"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "log_Z0_le"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "meijerG_initial"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "meijerG_decay"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "spectral_certificate"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "modal_basis"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "dual_mode_transfer"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "error_bound"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "nonvanishing"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "Pfq54_aux"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "residue_aux"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "residue_aux2"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "residue_aux3"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "residue_aux4"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "residue_aux5"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "log_Z0_aux"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "meijerG_aux"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "profile_aux"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "log_G_aux"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "log_G_aux2"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "log_G_aux3"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "modal_aux"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "jet_aux"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "uv_aux"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "stirling_aux"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "mg_aux1"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "mg_aux2"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "mg_aux3"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "mg_aux4"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "mg_aux5"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "mg_aux6"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "mg_aux7"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "mg_aux8"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "mi_aux"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "dl_aux"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "lev_aux1"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "lev_aux2"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "lev_aux3"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "lev_aux4"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "lev_aux5"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "lev_aux6"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "pf_aux"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "star_aux"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "gdual"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "mc_aux1"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "mc_aux2"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "mc_aux3"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "cas_aux"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "cas_fast"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "cas_poly"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "cas_link"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "cas_cert0"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "cas_cert1"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "cas_cert2"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "cas_cert3"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "cas_cert4"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "cas_cert5"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "cas_cert6"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "cas_cert7"
+srcDir = "pfq54_formalization_handoff"
+
+[[lean_lib]]
+name = "cas_spec"
+srcDir = "pfq54_formalization_handoff"

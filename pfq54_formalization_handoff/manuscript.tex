@@ -1,0 +1,1997 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs,longtable,hyperref}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\F}{\mathcal F}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Fp}{\mathbb F_p}
+\newcommand{\vp}{v_p}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}[proposition]{Corollary}
+\title{Hypergeometric readouts, a uniform common divisor,\\and a conditional irrationality criterion}
+\author{}\date{}
+\begin{document}\maketitle
+
+\begin{abstract}
+We give an explicit integer normalization for the harmonic readouts of
+ a terminating hypergeometric trajectory. A family of factorial
+permutations then supplies a common divisor valid simultaneously for
+all integer linear combinations of the numerator readouts. The
+construction is expressed directly in binomial coefficients and their
+parameter derivatives. The supplied limit argument is separated into explicit integral,
+matrix, and asymptotic statements. The final conclusion records the
+precise dependencies that must be verified.
+\end{abstract}
+
+\paragraph{Purpose.}
+This manuscript is a mathematical specification and proof draft for
+formalization. It first explains the argument independently of any
+trajectory, then gives the forward ${}_5F_4$ construction, and finally
+supplies the analytic and arithmetic details. The attached scripts
+provide exact algebraic certificates. No proof-assistant implementation
+is part of this handoff.
+
+\section{The conceptual argument}
+Let $q_n>0,p_{3,n},p_{4,n}$ be rational numbers and set
+\[
+ r_n(A,B)=\frac{Ap_{3,n}+Bp_{4,n}}{q_n},\qquad
+ \alpha_{A,B}=A\zeta(3)+B\zeta(4),\quad A,B\in\Z.
+\]
+The argument has three independent parts. Analysis identifies the limit
+and bounds the error. Arithmetic constructs integers representing the
+same rational approximants. A recurrence excludes an eventually zero
+error for every nonzero pair $(A,B)$.
+
+Choose a positive rational multiplier $m_n$ making
+$m_n(q_n,p_{3,n},p_{4,n})$ an integer vector. Then find a positive integer
+$g_n$ dividing its three coordinates. The resulting integers are
+\[
+ u_n=\frac{m_nq_n}{g_n}>0,\qquad
+ v_n(A,B)=\frac{m_n(Ap_{3,n}+Bp_{4,n})}{g_n},\qquad
+ r_n(A,B)=\frac{v_n(A,B)}{u_n}.
+\]
+This construction is simultaneous for all integer pairs: the multiplier
+and common divisor are chosen for the three basic sequences, before
+$A,B$ are selected. The integer $u_n$ need not be the reduced denominator;
+the latter is at most $u_n$.
+
+\begin{proposition}[The integer obstruction]\label{conceptual-criterion}
+Fix a nonzero integer pair. Suppose
+\[
+ u_n\leq e^{\sigma n+o(n)},\qquad
+ |\alpha_{A,B}-r_n(A,B)|\leq e^{-\beta n+o(n)},
+ \qquad\beta>\sigma>0,
+\]
+and the error is nonzero for infinitely many $n$. Then
+$\alpha_{A,B}$ is irrational. If the hypotheses hold for every fixed
+nonzero pair, then $1,\zeta(3),\zeta(4)$ are linearly independent over
+$\Q$. For reduced approximants, $\liminf\delta_n\geq\beta/\sigma-1$.
+\end{proposition}
+\begin{proof}
+Along the nonzero errors, $u_n|\alpha_{A,B}-r_n|\to0$.
+If $\alpha_{A,B}=a/b$ with integers $a,b$ and $b>0$, then
+\[
+ u_n|\alpha_{A,B}-r_n|
+ =\frac{|au_n-bv_n|}{b}\geq\frac1b,
+\]
+a contradiction. Any rational relation among the three constants can
+be cleared to an integer relation, giving the second assertion.
+After irrationality is known all errors are nonzero and the reduced
+denominators tend to infinity. Since $\log q_n^{\rm red}\leq\log u_n$,
+the displayed exponential bounds imply the delta assertion.
+\end{proof}
+
+For a terminating hypergeometric sum, the coefficient multiplier $E_n$
+is chosen to make every summand integral. Harmonic numbers appearing
+in the numerator readouts require additional powers of an lcm $D_n$.
+Permuting factorial factorizations gives different integer
+normalizations of the same vector; comparing them prime by prime gives
+a common divisor. An additional residue-sum identity improves that
+divisor in this construction. Each of these roles is developed below.
+
+\section{Coefficient normalization}
+Let
+\[
+ \F_n(z)={}_pF_q(\mathbf a_n;\mathbf b_n;z)
+       =\sum_{k=0}^{m_n}t_{n,k}z^k
+\]
+be a terminating hypergeometric series. Differentiation preserves its
+hypergeometric form: for $0\leq s\leq m_n$,
+\begin{equation}\label{differentiation}
+ \frac{d^s}{dz^s}\F_n(z)
+ =K_s(n)\F_{n,s}(z),\qquad
+ K_s(n)=\frac{\prod_i(a_{n,i})_s}{\prod_j(b_{n,j})_s},\qquad
+ \F_{n,s}(z)={}_pF_q(\mathbf a_n+s;\mathbf b_n+s;z).
+\end{equation}
+This is the standard differentiation formula
+\cite[Eq.~16.3.1]{DLMF}. The index $s$ shifts the parameters, not the
+trajectory depth $n$.
+
+For $\theta=z\,d/dz$, the identity $\theta z^k=kz^k$ gives
+\begin{equation}\label{polynomial-weight}
+ [P(\theta)\F_n]_{z=1}=\sum_{k=0}^{m_n}P(k)t_{n,k}
+ \qquad(P\in\Z[x]).
+\end{equation}
+Choose a positive integer $E_n$ that clears the coefficient denominators,
+so that $B_{n,k}:=E_nt_{n,k}\in\Z$ for every $k$. Then
+\begin{equation}\label{integer-weight}
+ E_n[P(\theta)\F_n]_{z=1}=\sum_kP(k)B_{n,k}\in\Z.
+\end{equation}
+In the shifted representation \eqref{differentiation}, the same assertion
+reads
+\[
+ E_nK_s(n)\F_{n,s}(1)
+ =\sum_{k=s}^{m_n}\frac{k!}{(k-s)!}B_{n,k}\in\Z.
+\]
+Thus one coefficient normalization clears both the hypergeometric
+series and the derivative prefactors.
+
+Harmonic readouts introduce additional rational weights. Write
+$H_m^{(r)}=\sum_{k=1}^m k^{-r}$ and
+$d_M=\operatorname{lcm}(1,\ldots,M)$, with $d_0=1$.
+We use the elementary integrality fact
+\begin{equation}\label{harmonic-integrality}
+ d_M^rH_m^{(r)}\in\Z\qquad(0\leq m\leq M).
+\end{equation}
+A common lcm will also clear the coefficient derivatives that occur
+in these readouts. Alternative factorial factorizations of the same
+coefficient family can give several such integer normalizations.
+Comparing their prime valuations produces a common divisor; this is the
+arithmetic permutation principle developed in the work of Rhin--Viola
+and Zudilin \cite{RV,Zudilin}.
+
+\section{The forward hypergeometric trajectory}
+Use the coordinate order of the supplied convergence argument:
+\[
+ x_0=(0,0,1,1,1;1,1,1,1),\qquad
+ v_F=(-14,-15,13,14,12;1,2,3,4).
+\]
+This is a simultaneous permutation of the upper parameters of the
+earlier start and direction, so the defining hypergeometric polynomial
+and the jet-basis contiguous equations agree. Set
+\[
+ \mathbf a_n=(-14n,-15n,1+13n,1+14n,1+12n),\qquad
+ \mathbf b_n=(1+n,1+2n,1+3n,1+4n),
+\]
+\[
+ \F_n(z)={}_5F_4(\mathbf a_n;\mathbf b_n;z)
+ =\sum_{k=0}^{14n}
+ \frac{\prod_i(a_{n,i})_k}{k!\prod_j(b_{n,j})_k}\,z^k.
+\]
+Let $T(n)$ be the native forward matrix obtained from the contiguous
+relations and let $W_n=T(0)\cdots T(n-1)$, with $W_0=I$.
+Its hypergeometric row has initial value $e_0^T$ and satisfies
+\[
+ e_0^TW_n=(\F_n(1),\theta\F_n(1),\theta^2\F_n(1),\theta^3\F_n(1)).
+\]
+In particular, the denominator row $r_Q=12e_0^T$ gives
+$r_QW_ne_0=12\F_n(1)$.
+For $A,B\in\Z$, the derivative observable
+\[
+ G_n(A,B)=[-6A\theta^2\F_n+(3A-2B)\theta^3\F_n]_{z=1}
+\]
+is $e_0^TW_nc_{A,B}$, where
+$c_{A,B}=(0,0,-6A,3A-2B)^T$.
+Choosing this vector as the first column of a basis matrix makes $G_n$
+the first coordinate of a transformed row solution, with its initial
+row transformed by the same matrix.
+The original numerator row is $r_{A,B}=c_{A,B}^T$ and has readout
+$r_{A,B}W_ne_0$; its harmonic representation is given below.
+
+Formula \eqref{differentiation} gives the explicit shifted expression
+\begin{align*}
+ G_n(A,B)={}&(-3A-2B)K_1(n)\F_{n,1}(1)\\
+ &+(3A-6B)K_2(n)\F_{n,2}(1)
+ +(3A-2B)K_3(n)\F_{n,3}(1),
+\end{align*}
+where
+\[
+ K_1(n)=\frac{210n^2(1+12n)(1+13n)(1+14n)}
+ {(1+n)(1+2n)(1+3n)(1+4n)}.
+\]
+For a quadratic weight, the equivalent single-series expression is
+\[
+ [(u\theta+v\theta^2)\F_n]_{z=1}
+ =(u+v)K_1(n)\,{}_6F_5(\mathbf a_n+1,c+1;\mathbf b_n+1,c;1),
+ \qquad c=(u+v)/v,
+\]
+whenever its parameters are regular. Polynomial weighting as in
+\eqref{polynomial-weight} applies without these parameter restrictions.
+
+For $n\geq1$, take
+\begin{equation}\label{E}
+ E_n=\binom{12n}{10n}\binom{13n}{10n}
+        \binom{14n}{10n}\binom{15n}{n}.
+\end{equation}
+Factorial cancellation gives
+\begin{equation}\label{B}
+ B_{n,k}=E_nt_{n,k}
+ =\binom{12n+k}{10n}\binom{13n+k}{10n}\binom{14n+k}{10n}
+  \binom{15n}{n+k}\binom{15n}{k}\in\Z.
+\end{equation}
+Hence $E_n\F_n(1)=\sum_kB_{n,k}$ is an integer, and the same $E_n$
+clears every integer polynomial weight in $k$.
+
+
+\section{The limit and its exponential rate}\label{limit-interface}
+The analytic conclusion to use is
+\begin{equation}\label{geometric-error}
+ r_n(A,B)\longrightarrow\alpha_{A,B},\qquad
+ \limsup_{n\to\infty}|r_n(A,B)-\alpha_{A,B}|^{1/n}
+ \leq\vartheta:=\frac{|\rho_4|}{|\rho_1|}<1.
+\end{equation}
+Here $\rho_1,\rho_2,\rho_4$ are the three roots of the exact restricted
+characteristic polynomial in Appendix~\ref{limit-details};
+$|\rho_1|=|\rho_2|>1>|\rho_4|>0$.
+The geometric factor $\vartheta$ and the logarithmic error exponent
+$\beta$ are different quantities. If $\vartheta<e^{-\beta}$, the
+root-test definition of limsup gives the eventual bound
+$|r_n-\alpha_{A,B}|\leq e^{-\beta n}$.
+The exact spectral certificate in this handoff gives
+\[
+ \vartheta<\frac{102}{10^{51}}<e^{-112.8}.
+\]
+Thus the proposed analytic module supplies $\beta=112.8$ for the
+arithmetic comparison; no denominator estimate is used to obtain it.
+
+The proof of \eqref{geometric-error} uses the Meijer--G state only to
+identify the limit. Its initial values give the two pairings
+$6\alpha_{A,B}$ and $6$. A positive integral proves that this state
+decays. The restricted three-dimensional system has only one decaying
+mode, so the state selects that mode. The inverse-transpose walk turns
+it into the dominant mode. Finally, an exact rank-three intertwining
+identity transfers its ratio to the original forward walk.
+
+\subsection{The precise asymptotic statement needed}
+To avoid concealing a hypothesis in the phrase ``by asymptotics'',
+we isolate the matrix statement used in that transfer. A modal-basis
+theorem for rational difference systems must supply the basis in the
+next lemma. This is the general asymptotic theorem to formalize or
+import; the subsequent transfer is elementary linear algebra.
+
+\begin{lemma}[Dual mode transfer]\label{dual-mode-transfer}
+Let $Q(n)\in\operatorname{GL}_3(\mathbb C)$ and
+$W_Q(n)=Q(0)\cdots Q(n-1)$. Suppose there are three independent row
+solutions, assembled as $B_n=B_0W_Q(n)$, and nonzero scalars $a_i(n)$
+such that, for $n\geq1$,
+\[
+ Y_n=\operatorname{diag}(a_1(n),a_2(n),a_3(n))^{-1}B_nT_n^{-1}
+ \longrightarrow Y\in\operatorname{GL}_3(\mathbb C),\quad
+ T_n=\operatorname{diag}(1,n,n^2),
+\]
+\[
+ |a_1(n)|^{1/n}\to r,qquad
+ |a_2(n)|^{1/n},|a_3(n)|^{1/n}\to R,qquad 0<r<R.
+\]
+Write $s_0$ for the first row of $B_0$. Let columns $v_n$ satisfy
+$T_n^{-T}v_n\to w$, and assume $(Y^{-T}w)_1\ne0$.
+For fixed rows $\ell_1,\ell_2$ with $\ell_2s_0^T\ne0$, their ratio
+on $W_Q(n)^{-T}v_n$ is eventually defined and tends to
+$\alpha=\ell_1s_0^T/(\ell_2s_0^T)$, with
+\[
+ \limsup_{n\to\infty}
+ \left|\frac{\ell_1W_Q(n)^{-T}v_n}
+ {\ell_2W_Q(n)^{-T}v_n}-\alpha\right|^{1/n}\leq r/R.
+\]
+\end{lemma}
+\begin{proof}
+Put $b_n=Y_n^{-T}T_n^{-T}v_n\to b=Y^{-T}w$.
+The factorization of $B_n$ gives the exact identity
+\[
+ W_Q(n)^{-T}v_n
+ =B_0^T\operatorname{diag}(a_1(n)^{-1},a_2(n)^{-1},a_3(n)^{-1})b_n.
+\]
+For large $n$, $b_{n,1}\ne0$. Dividing by the common nonzero scalar
+$b_{n,1}/a_1(n)$ leaves
+\[
+ s_0^T+\epsilon_n,\qquad
+ \epsilon_n=\sum_{i=2}^3
+ \frac{a_1(n)b_{n,i}}{a_i(n)b_{n,1}}(B_0)_{i,*}^T,
+ \qquad\limsup\|\epsilon_n\|^{1/n}\leq r/R.
+\]
+The denominator tends to $\ell_2s_0^T\ne0$.
+Subtracting $\alpha$ expresses the ratio error as
+$(\ell_1-\alpha\ell_2)\epsilon_n/
+ (\ell_2s_0^T+\ell_2\epsilon_n)$ and proves both assertions.
+\end{proof}
+
+For this application the balanced matrices
+$T_nQ(n)T_{n+1}^{-1}$ have rational entries and a finite invertible
+limit $Q_\infty$ with distinct eigenvalues. The required modal-basis
+result asserts that the rows of $Y$ can be chosen as left eigenvectors
+of $Q_\infty$, with the rates above equal to their eigenvalue moduli.
+It must be invoked with its exact hypotheses, not inferred from three
+numerical eigenvalues. Once that result is supplied, the exponentially
+decaying Meijer--G state is a nonzero multiple of the first row solution:
+multiplying its expansion by $Y_n^{-1}$ rules out both growing
+coordinates. Rescale that row to equal the actual state.
+
+The transported projection, after a scalar that cancels from the ratio,
+satisfies $T_n^{-T}v_n\to(1,10,100)^T$. The exact nonzero determinant
+\[
+ \det[w,Q_\infty^{-T}w,(Q_\infty^{-T})^2w]\ne0
+\]
+ensures $(Y^{-T}w)_1\ne0$: in an eigenbasis this determinant is the
+product of the three coordinates of $w$, a nonzero change-of-basis
+determinant, and a Vandermonde determinant in the distinct eigenvalues.
+The required initial denominator pairing is $6$, not an assumed
+irrationality statement. All trajectory data, integral computations,
+and exact transport identities are given in Appendix~\ref{limit-details}.
+
+\section{The harmonic readouts}
+To express the numerator readouts, deform the coefficient product by
+one auxiliary parameter. With variable lower argument, use
+\[
+ \binom{M}{x}=\frac{M!}{\Gamma(x+1)\Gamma(M-x+1)}\qquad(M\in\Z_{\geq0}),
+\]
+while $\binom{x}{M}$ denotes the usual binomial polynomial.
+For every integer $j\geq0$, define
+\begin{equation}\label{T}
+ \mathcal T_{n,j}(\varepsilon)=
+ \prod_{u=10}^{12}\binom{j+un-\varepsilon}{10n}
+ \binom{15n}{j-n-\varepsilon}
+ \binom{15n}{j-2n-\varepsilon},
+\end{equation}
+\[
+ U_{n,j}=\mathcal T_{n,j}(0),\qquad
+ V_{n,j}=\mathcal T'_{n,j}(0).
+\]
+Thus $U_{n,2n+k}=B_{n,k}$ for $0\leq k\leq14n$.
+For $j<n$ or $j>17n$, both of the last two factors in \eqref{T}
+vanish at zero, so $U_{n,j}=V_{n,j}=0$. All sums below are consequently
+finite. The derivative is taken before discarding zero-valued terms:
+a single vanishing factor can have a nonzero derivative.
+
+Parameter derivatives produce harmonic differences by
+$\psi(m+1)=H_m-\gamma$ \cite[Eq.~5.4.14]{DLMF}.
+The two numerator readouts can be written directly as
+\begin{align}
+ S_{0,n}&=\sum_{j\geq0}U_{n,j}=E_n\F_n(1),\label{S0}\\
+ S_{3,n}&=\sum_{j\geq0}\left(U_{n,j}H_{j+2n}^{(3)}
+                      +\tfrac12V_{n,j}H_{j+2n}^{(2)}\right),\label{S3}\\
+ S_{4,n}&=\sum_{j\geq0}\left(U_{n,j}H_{j+2n}^{(4)}
+                      +\tfrac13V_{n,j}H_{j+2n}^{(3)}\right).\label{S4}
+\end{align}
+In this normalization the forward readout identities are
+\begin{equation}\label{walk-readout}
+ r_QW_ne_0=\frac{12}{E_n}S_{0,n},\qquad
+ r_{A,B}W_ne_0=\frac{12}{E_n}(AS_{3,n}+BS_{4,n}).
+\end{equation}
+The proposed contiguity derivation is supplied in
+Appendix~\ref{arith-walk-section}; its verification is a separate
+obligation from the arithmetic of the finite sums.
+Under these readout identities, we identify
+the original approximants as
+\[
+ r_n(A,B)=\frac{AS_{3,n}+BS_{4,n}}{S_{0,n}}.
+\]
+The arithmetic argument that follows is a statement about the explicit
+finite sums \eqref{S0}--\eqref{S4}. It does not identify the derivative
+observable $e_0^TW_nc_{A,B}$ with the different readout
+$r_{A,B}W_ne_0$.
+
+\section{Integer normalization}
+Set
+\[
+ D_n=d_{19n}=\operatorname{lcm}(1,\ldots,19n).
+\]
+This covers every contributing harmonic index $j+2n$ and will also
+clear the parameter derivatives in \eqref{T}.
+
+\begin{proposition}\label{integral}
+For every $n\geq1$ and $j\geq0$,
+\[
+ U_{n,j}\in\Z,\qquad D_nV_{n,j}\in\Z.
+\]
+Consequently $Z_{i,n}:=6D_n^4S_{i,n}$ is an integer for $i=0,3,4$.
+\end{proposition}
+\begin{proof}
+The assertion for $U_{n,j}$ follows from its binomial product.
+For a fixed lower argument, differentiating Vandermonde's identity gives
+\[
+ \left.\frac{d}{dx}\binom{x}{M}\right|_{x=N}
+ =\sum_{h=1}^{M}\binom{N}{M-h}\frac{(-1)^{h-1}}h;
+\]
+hence $d_M$ clears the derivative at every integer $N$.
+For a fixed upper argument, the standard digamma identity gives
+\[
+ \left.\frac{d}{d\varepsilon}\binom{M}{m-\varepsilon}
+ \right|_{\varepsilon=0}
+ =\binom{M}{m}(H_m-H_{M-m})\qquad(0\leq m\leq M).
+\]
+For $m=-r$ or $m=M+r$, $r\geq1$, the derivative instead has absolute
+value $M!(r-1)!/(M+r)!$, by the simple zeros of reciprocal Gamma
+\cite[\S5.2]{DLMF}. This equals the absolute value of the derivative of
+$\binom{x}{M+r}$ at $x=r-1$, so it is cleared by $d_{M+r}$.
+
+For $0\leq j\leq17n$, the polynomial factors in \eqref{T} have degree
+$10n$. The fixed-upper factors have upper argument $15n$, and their
+lower arguments lie at most $2n$ outside the usual range. Thus $D_n$
+clears every differentiated factor. The product rule proves
+$D_nV_{n,j}\in\Z$; outside this range the whole derivative vanishes.
+Finally, \eqref{harmonic-integrality} applied to \eqref{S3}--\eqref{S4}
+proves $6D_n^4S_{i,n}\in\Z$. One power of $D_n$ clears $V_{n,j}$,
+and the remaining three clear the highest accompanying harmonic order.
+The factor $6$ clears the fixed multipliers $1/2$ and $1/3$.
+\end{proof}
+
+\section{Factorial permutations and a common divisor}
+Let $b=(b_0,\ldots,b_4)$ run over the permutations of $(-2,-1,0,1,2)$.
+Write
+\[
+ L_b=(10+b_0,11+b_1,12+b_2),\qquad
+ J_b=(16-b_3,17-b_4),
+\]
+and define the alternative coefficient product
+\[
+ \mathcal T^b_{n,j}(\varepsilon)=
+ \prod_{i=0}^2\binom{j+(10+i)n-\varepsilon}{(10+i+b_i)n}
+ \binom{(16-b_3)n}{j-b_3n-\varepsilon}
+ \binom{(17-b_4)n}{j-b_4n-\varepsilon}.
+\]
+Expansion into Gamma factors shows that
+\begin{equation}\label{permutation}
+ \mathcal T^b_{n,j}(\varepsilon)=\lambda_{n,b}\mathcal T_{n,j}(\varepsilon),
+ \qquad
+ \lambda_{n,b}=
+ \frac{(10n)!^3\prod_{e\in J_b}(en)!}
+ {(15n)!^2\prod_{\ell\in L_b}(\ell n)!}.
+\end{equation}
+Indeed the three varying numerator factors are unchanged, and the five
+factors $\Gamma(j-b_i n+1-\varepsilon)$ in the denominator are merely
+permuted. The two other varying factors are
+$\Gamma(16n-j+1+\varepsilon)$ and
+$\Gamma(17n-j+1+\varepsilon)$.
+The scalar $\lambda_{n,b}$ is exactly the ratio of the constant
+factorials in the two products.
+
+The proof of Proposition~\ref{integral} applies to every permutation.
+The three polynomial degrees are at most $14n$. For each fixed-upper
+factor, writing its arguments as $M$ and $m$, all of $M,m,M-m$ are
+at most $19n$ when $0\leq j\leq17n$; both the interior derivative and
+the exterior derivative are therefore cleared by $D_n$.
+For larger $j$, the value and derivative vanish by
+\eqref{permutation}. It follows that
+\[
+ \lambda_{n,b}U_{n,j}\in\Z,\qquad
+ D_n\lambda_{n,b}V_{n,j}\in\Z,
+ \qquad \lambda_{n,b}Z_{i,n}\in\Z\quad(i=0,3,4).
+\]
+Thus each permutation yields an integer multiple of the same rational
+readout vector, and the multiplier is known explicitly.
+
+For a prime $p$ let $v_p$ denote its valuation, with $v_p(0)=+\infty$.
+Define
+\begin{equation}\label{divisor}
+ e_p(n)=\max\left(0,\max_b\{-v_p(\lambda_{n,b})\}\right),\qquad
+ \mathcal G_n=\prod_{p\leq19n}p^{e_p(n)}.
+\end{equation}
+Legendre's formula makes the exponents explicit:
+\[
+ -v_p(\lambda_{n,b})=\sum_{h\geq1}\left[
+ 2\left\lfloor\frac{15n}{p^h}\right\rfloor
+ -3\left\lfloor\frac{10n}{p^h}\right\rfloor
+ -\sum_{e\in J_b}\left\lfloor\frac{en}{p^h}\right\rfloor
+ +\sum_{\ell\in L_b}\left\lfloor\frac{\ell n}{p^h}\right\rfloor\right].
+\]
+Only finitely many terms are nonzero. The maximum over permutations
+is taken after the sum over prime powers.
+
+\begin{proposition}\label{gcd}
+For every $n\geq1$,
+\[
+ \mathcal G_n\mid\gcd(Z_{0,n},Z_{3,n},Z_{4,n}).
+\]
+Consequently, for every integer pair $A,B$,
+\[
+ \mathcal G_n\mid\gcd(Z_{0,n},AZ_{3,n}+BZ_{4,n}).
+\]
+If $r_n(A,B)=p_n/q_n$ is reduced with $q_n>0$, then
+\begin{equation}\label{height}
+ q_n\leq\frac{6D_n^4E_n\F_n(1)}{\mathcal G_n}.
+\end{equation}
+\end{proposition}
+\begin{proof}
+For each permutation, integrality of $\lambda_{n,b}Z_{i,n}$ gives
+$v_p(Z_{i,n})\geq-v_p(\lambda_{n,b})$. Since $Z_{i,n}$ is itself an
+integer, $v_p(Z_{i,n})\geq e_p(n)$. This proves the first assertion;
+the second follows by integer linear combination.
+Moreover, $Z_{0,n}=6D_n^4\sum_kB_{n,k}>0$.
+Dividing numerator and denominator by $\mathcal G_n$ and then reducing
+the resulting fraction proves \eqref{height}.
+\end{proof}
+
+The same reasoning applied coefficientwise shows
+$\mathcal G_n\mid B_{n,k}$ for every $k$. Since $B_{n,0}=E_n$,
+$E_n/\mathcal G_n$ is an integer and clears every polynomially weighted
+sum in \eqref{integer-weight}. The harmonic readouts require the
+additional lcm normalization established in Proposition~\ref{integral}.
+
+\section{The error-versus-height criterion}
+Let $\alpha_{A,B}=A\zeta(3)+B\zeta(4)$ and set
+\[
+ u_n=Z_{0,n}/\mathcal G_n,\qquad
+ v_n(A,B)=(AZ_{3,n}+BZ_{4,n})/\mathcal G_n.
+\]
+Proposition~\ref{gcd} gives integers $u_n>0$, $v_n(A,B)$ with
+$r_n(A,B)=v_n(A,B)/u_n$.
+
+\begin{corollary}
+Fix $(A,B)\in\Z^2\setminus\{(0,0)\}$. Suppose there is an infinite
+set $\mathcal N$ of depths on which
+\begin{equation}\label{assumed-error}
+ 0<|\alpha_{A,B}-r_n(A,B)|,\qquad
+ u_n|\alpha_{A,B}-r_n(A,B)|\longrightarrow0.
+\end{equation}
+Then $\alpha_{A,B}$ is irrational. If this hypothesis holds for every
+fixed nonzero integer pair, then $1,\zeta(3),\zeta(4)$ are linearly
+independent over $\mathbb Q$.
+\end{corollary}
+\begin{proof}
+If $\alpha_{A,B}=a/b$ with integers $a,b$ and $b>0$, then for every
+$n\in\mathcal N$,
+\[
+ u_n|\alpha_{A,B}-r_n(A,B)|
+ =\frac{|au_n-bv_n(A,B)|}{b}\geq\frac1b,
+\]
+since the numerator is a nonzero integer. This contradicts
+\eqref{assumed-error}. A nontrivial rational relation among
+$1,\zeta(3),\zeta(4)$ would make one such nonzero integer combination
+rational, proving the second assertion.
+\end{proof}
+
+Quantitatively, if the assumed approximation bound and the arithmetic
+height bound on the same depths are
+\[
+ |\alpha_{A,B}-r_n(A,B)|\leq e^{-\beta n+o(n)},\qquad
+ u_n\leq e^{\sigma n+o(n)},\qquad \beta>\sigma>0,
+\]
+with nonzero error, then \eqref{assumed-error} holds. For the reduced
+denominators, $q_n\leq u_n$ and
+\[
+ \liminf_{\substack{n\to\infty\\n\in\mathcal N}}
+ \left(-1-\frac{\log|\alpha_{A,B}-p_n/q_n|}{\log q_n}\right)
+ \geq\frac{\beta}{\sigma}-1>0.
+\]
+The denominators tend to infinity on these depths because the limit
+is irrational. The analytic estimate is the output of Section~\ref{limit-interface}, subject to its stated modal-basis dependency. In particular,
+accepting an approximation exponent such as $112.8$ still requires a
+height exponent strictly below it for the divisor actually established
+in \eqref{divisor}. No such numerical comparison is claimed by the
+permutation divisibility argument alone.
+
+
+\section{The stronger divisor and the quantitative conclusion}
+The coefficientwise permutation divisor $\mathcal G_n$ above should not
+be confused with the stronger divisor $G_n$ in the appendix. The latter
+uses eight factorial pairings, the upper harmonic ranges, and one
+cancellation over all residues modulo a prime. Its complete arithmetic
+argument is reproduced in the appendix, including the finite floor
+partition and the rational logarithm bounds.
+
+To translate its notation, its rational function is denoted $F_n(t)$,
+whereas our terminating hypergeometric polynomial is $\F_n(z)$.
+The appendix uses
+\[
+ C_n=\frac{(15n)!^2}{(10n)!^3},\qquad
+ \rho_n=(-1)^n\frac{(12n)!(13n)!}
+ {n!(2n)!(3n)!(4n)!(15n)!}.
+\]
+They satisfy $E_n=C_n|\rho_n|$. Direct coefficient comparison gives
+\[
+ U_{n,j}=(-1)^n C_na_j,\quad V_{n,j}=(-1)^n C_nb_j,
+ \qquad (S_{0,n},S_{3,n},S_{4,n})
+ =(-1)^n C_n(Q_n,P_{3,n},P_{4,n}).
+\]
+Thus the appendix's integer vector $X_n$ equals
+$(-1)^n(Z_{0,n},Z_{3,n},Z_{4,n})$: both normalizations have exactly the
+same common divisors. In particular $G_n$ divides all three $Z_{i,n}$.
+Set
+\[
+ \widetilde u_n=Z_{0,n}/G_n>0,\qquad
+ \widetilde v_n(A,B)=(AZ_{3,n}+BZ_{4,n})/G_n.
+\]
+Both are integers. The height argument in the appendix bounds the
+\emph{unreduced} denominator $\widetilde u_n$ itself:
+\[
+ \limsup_{n\to\infty}\frac{\log\widetilde u_n}{n}
+ \leq65.46+76-(S_8+9)<112.5,
+\]
+where $S_8>20.004$ is its explicit rational sum. Consequently the
+reduced denominator is at most $\widetilde u_n$, and
+$\widetilde u_n\leq e^{112.5n}$ for all sufficiently large $n$.
+
+\begin{theorem}[Conditional application]\label{conditional-completion}
+Assume the finite-sum readout identification and the recurrence
+identification described below, and the analytic module of
+Section~\ref{limit-interface}. Equivalently, its rate conclusion may
+be taken as the following explicit input. For each fixed nonzero
+$(A,B)\in\Z^2$, assume
+\begin{equation}\label{rate-input}
+ |A\zeta(3)+B\zeta(4)-r_n(A,B)|
+ \leq\exp(-\beta n+o(n)),\qquad \beta>112.5.
+\end{equation}
+The $o(n)$ term may depend on $A,B$. With the stronger arithmetic bound
+of the appendix, every such combination is irrational, and hence
+$1,\zeta(3),\zeta(4)$ are linearly independent over $\Q$.
+If $\beta=112.8=564/5$, their reduced approximants satisfy
+\[
+ \liminf_{n\to\infty}\delta_n(A,B)\geq\frac{112.8}{112.5}-1
+ =\frac1{375}>0.
+\]
+After irrationality is established, every rational approximation has
+nonzero error and its reduced denominator tends to infinity.
+\end{theorem}
+\begin{proof}
+The nonvanishing argument below supplies infinitely many depths with
+nonzero error for each fixed pair. On these depths the two bounds imply
+\[
+ 0<\widetilde u_n|A\zeta(3)+B\zeta(4)-r_n(A,B)|
+ \leq e^{-(\beta-112.5)n+o(n)}\longrightarrow0.
+\]
+If the limit were $a/b$, with $a,b\in\Z$ and $b>0$, the left-hand
+side would be at least $1/b$, since
+$a\widetilde u_n-b\widetilde v_n$ is a nonzero integer.
+This proves irrationality. Clearing denominators in any rational
+relation among $1,\zeta(3),\zeta(4)$ proves the independence assertion.
+Finally $q_n\leq\widetilde u_n$ gives the stated delta bound.
+\end{proof}
+Only the exact hypothesis $\beta>112.5$ is used here. A bound with
+$\beta=112$ alone is insufficient for this argument. The numerical
+margin $1/375$ is a conditional lower bound, not a measured delta.
+
+\subsection{Nonvanishing for every fixed integer pair}
+The auxiliary forward Meijer--G matrix $M_G(n)$ in this recurrence
+argument has the parameters in Appendix~\ref{arith-walk-section}.
+It differs from the dual Meijer--G matrix $G(n)$ used in the limit
+argument. Their initial matrices and scalar normalizations must be
+kept distinct.
+Here is the precise recurrence argument needed, including the case
+where the target constant might be zero. Let $M_G(n)$ be the native
+Meijer--G matrix specified in Appendix~\ref{arith-walk-section}.
+The certificate file gives a three-dimensional companion $C^{(G)}(n)$
+and a $4\times3$ rational matrix $U(n)$ with
+\[
+ M_G(n)U(n+1)=U(n)C^{(G)}(n),\quad U(n)e_0=e_0,\qquad
+ C^{(G)}(n)=\begin{pmatrix}0&0&c_0(n)\\1&0&c_1(n)\\0&1&c_2(n)\end{pmatrix}.
+\]
+Its rational-function identities, absence of poles at $n\geq0$, and
+$c_0(n)\ne0$ at those indices are certificate obligations. The verifier
+checks the numerator of $c_0$ and the three denominators by factoring:
+each factor has a nonzero constant coefficient and coefficients of one
+sign. The full coefficient data are included, not just sample values.
+The readout identification needed here is
+\[
+ (Q_n,P_{3,n},P_{4,n})^T=(-1)^n R W_n^{(G)}e_0,\qquad
+ R=\begin{pmatrix}1&0&0&0\\0&0&-1/2&1/4\\0&0&0&-1/6\end{pmatrix}.
+\]
+It is the same bridge as in the appendix, in the equivalent Meijer--G
+coordinates. It must be proved for all $n$, including the initial
+values $(Q_0,P_{3,0},P_{4,0})=(1,0,0)$.
+
+Put $S=RU(0)$. The saved exact certificate gives $\det S\ne0$;
+one short check is
+\[
+ S\bmod101=\begin{pmatrix}1&1&56\\0&56&10\\0&76&19\end{pmatrix},
+ \qquad\det S\equiv1\pmod{101}.
+\]
+All denominators of its entries are prime to $101$.
+For any real $\alpha$ and integers $A,B$, let
+\[
+ z_n=(-1)^n(\alpha Q_n-AP_{3,n}-BP_{4,n}).
+\]
+Telescoping the coboundary identity shows that $z_n$ is the first
+coordinate of a row companion solution with initial row
+$(\alpha,-A,-B)S$. Its first three scalar values are exactly that row,
+and it obeys
+\[
+ z_{n+3}=c_0(n)z_n+c_1(n)z_{n+1}+c_2(n)z_{n+2}.
+\]
+If $z_n$ were eventually zero, three consecutive zeros and $c_0(n)\ne0$
+would force the preceding value to vanish. Backward induction would
+force $z_0=z_1=z_2=0$. Invertibility of $S$ would then give
+$\alpha=A=B=0$. This is impossible when $(A,B)\ne(0,0)$.
+Taking $\alpha=A\zeta(3)+B\zeta(4)$ proves the required infinitely many
+nonzero errors, without assuming that $\alpha$ is nonzero.
+
+\paragraph{Order of verification.}
+The arithmetic theorem concerns the explicit finite sums. The readout
+identity connects those sums with the forward walk. The recurrence
+excludes an eventually exact approximation. The limit argument identifies
+the zeta combination and supplies its error exponent. These statements
+must be connected for the same sequences before applying
+Proposition~\ref{conceptual-criterion}. The exact matrix checks are
+included as finite certificates; the general modal-basis theorem remains
+a separate analytic dependency.
+
+\clearpage\appendix
+\section{The limit construction in detail}\label{limit-details}
+
+We write $(\mathcal M,x_0,v)_F$ for the forward scheme and
+$(\mathcal M,x_0,v)_D$ for the dual scheme of a CMF $\mathcal M$ with
+starting point $x_0$ and direction $v$.
+
+\paragraph{Analytic dependency.}
+The limit theorem below uses the modal-basis assertion specified in
+Section~\ref{limit-interface}. Its integral estimates and exact matrix
+identities are supplied here. The proof of that general difference-system
+assertion is a separate formalization task; the characteristic roots
+alone are not a substitute for it.
+
+\begin{theorem}
+\label{thm:z34-limit}
+Let $A,B\in\mathbb Z$, $x_0=(0,0,1,1,1;1,1,1,1)$ and
+$v_F=(-14,-15,13,14,12;1,2,3,4)$.
+The forward scheme
+\[
+\bigl({}_5F_4(1),\,x_0,\,v_F\bigr)_F
+\]
+has initial condition and projection vector
+\[
+I_F=\begin{pmatrix}0&0&-6A&3A-2B\\12&0&0&0\end{pmatrix},
+\qquad v=\begin{pmatrix}1\\0\\0\\0\end{pmatrix}.
+\]
+Writing $W_F(N)=F_{x_0,v_F}(0)\cdots F_{x_0,v_F}(N-1)$, the ratio
+\[
+R_N=\frac{(I_FW_F(N)v)_1}{(I_FW_F(N)v)_2}
+\]
+converges to $A\zeta(3)+B\zeta(4)$, with exponential error bound
+\[
+\limsup_{N\to\infty}|R_N-A\zeta(3)-B\zeta(4)|^{1/N}
+\leq\vartheta:=\frac{|\rho_4|}{|\rho_1|}
+\approx1.019\cdot10^{-49},
+\]
+where the roots are those of Proposition~\ref{prop:z34-rates}.
+\end{theorem}
+Unlike the preceding case, we cannot identify the full dual Meijer G
+scheme with this forward scheme by an invertible rational coboundary.
+Instead, a rank-three intertwining matrix connects the selected walks.
+We show that this connection preserves the dominant dual contribution
+and the initial-state identity determining the limit.
+
+\begin{proposition}
+\label{prop:z34-coboundary}
+Let $y_0=(0,0,1,1,2;0,0,0,0,0)$ and
+$v_G=(-16,-17,11,12,10;-2,-1,0,1,2)$.
+The dual scheme $(G^{5,2}_{5,5}(1),y_0,v_G)_D$, restricted to its first
+three coordinates, is coboundary equivalent, up to scalar normalization,
+to the forward scheme $({}_5F_4(1),x_0,v_F)_F$ on a three-dimensional
+invariant space $\operatorname{im}E(n)$.
+\end{proposition}
+
+\begin{proof}
+
+The matrices and scalar factors are explicit:
+\[
+ E(n)=\begin{pmatrix}
+ 1&0&0\\
+ 0&-n(450n+29)&-n^2(101250n^2+12975n+406)\\
+ 0&1&0\\0&0&1
+ \end{pmatrix},\quad
+ L=\begin{pmatrix}1&0&0&0\\0&0&1&0\\0&0&0&1\end{pmatrix}.
+\]
+Write $H(n)=(h_{ij})_{0\leq i,j\leq2}$, where
+\begin{align*}
+ h_{00}&=-6n^2(10n+1)(12n+1)(193n+13),&
+ h_{01}&=-n(12n+1)(2550n^2+523n+23),\\
+ h_{02}&=(12n+1)(450n^2+41n+1),&
+ h_{10}&=(10n+1)(450n^2+21n-1),\\
+ h_{11}&=(-25n-2)(18n-1),&h_{12}&=-1,\\
+ h_{20}&=-20n-2,&h_{21}&=2,\qquad h_{22}=0.
+\end{align*}
+The positive scalar $R(n)=\mathfrak a(n)/\mathfrak b(n)$ is given by
+\begin{align*}
+ \mathfrak a(n)&=1125(n+1)^3(2n+1)(3n+1)(3n+2)
+ \prod_{j=1}^4(5n+j)
+ \prod_{j\in\{1,2,4,7,8,11,13,14\}}(15n+j),\\
+ \mathfrak b(n)&=416(6n+1)(6n+5)
+ \prod_{j\in\{1,5,7,11\}}(12n+j)
+ \prod_{j=1}^{12}(13n+j).
+\end{align*}
+In particular, $\det H(n)=2\prod_{j=8}^{12}(jn+1)\ne0$ for $n\geq0$.
+The attached symbolic certificate verifies the following identities
+as rational functions, not only at finitely many values:
+\[
+F_{x_0,v_F}(n)E(n+1)=E(n)\widehat F(n),
+\qquad
+\widehat F(n)=\frac{\mathfrak a(n)}{\mathfrak b(n)}H(n)Q(n)^{-T}H(n+1)^{-1}.
+\]
+Here $Q(n)$ is the leading $3\times3$ block of $G_{y_0,v_G}(n)$,
+$\widehat F(n)=LF_{x_0,v_F}(n)E(n+1)$, and $L$ selects the first, third
+and fourth coordinates, with $LE(n)=I_3$.
+The restriction of the dual Meijer G matrix follows from
+\[
+G_{y_0,v_G}(n)=\begin{pmatrix}Q(n)&b(n)\\0&-1\end{pmatrix},
+\qquad
+G_{y_0,v_G}(n)^{-T}
+=\begin{pmatrix}Q(n)^{-T}&0\\b(n)^TQ(n)^{-T}&-1\end{pmatrix}.
+\]
+Thus a row $(u,0)$ is mapped to $(uQ(n)^{-T},0)$, so the first
+three coordinates form an invariant space for the dual walk.
+Put
+\[
+J=\begin{pmatrix}1&0&0&0\\0&1&0&0\\0&0&1&0\end{pmatrix},
+\qquad K(n)=E(n)H(n)J,
+\qquad R(n)=\frac{\mathfrak a(n)}{\mathfrak b(n)}.
+\]
+The matrix $K(n)$ has rank three, and the preceding identities imply
+\[
+F_{x_0,v_F}(n)K(n+1)=R(n)K(n)G_{y_0,v_G}(n)^{-T}.
+\]
+Consequently, writing $W_G(N)=G_{y_0,v_G}(0)\cdots
+G_{y_0,v_G}(N-1)$, we obtain the exact walk identity
+\[
+W_F(N)K(N)
+=\left(\prod_{n=0}^{N-1}R(n)\right)K(0)W_G(N)^{-T}.
+\]
+This identity does not require $K(n)$ to be invertible.
+\end{proof}
+Along the trajectory define
+\[
+\mathcal{G}_n(z)=G_{5,5}^{5,2}\!\left(
+ z\;\middle|\;
+ \begin{matrix}
+ -16n,-17n;\ 1+11n,1+12n,2+10n\\
+ -2n,-n,0,n,2n
+ \end{matrix}\right),
+\qquad \theta=z\,\frac{d}{dz}.
+\]
+
+\begin{proposition}
+\label{prop:z34-initial-values}
+Let
+\[
+\mathcal{S}_G(n)=\bigl(
+\mathcal{G}_n(1),\ (\theta\mathcal{G}_n)(1),\
+(\theta^2\mathcal{G}_n)(1),\ (\theta^3\mathcal{G}_n)(1)\bigr),
+\]
+\[
+I_G=\begin{pmatrix}2B&-3A-2B&3A&0\\0&0&6&0\end{pmatrix}.
+\]
+Then
+\[
+I_G\mathcal{S}_G(0)^T
+=6\begin{pmatrix}A\zeta(3)+B\zeta(4)\\1\end{pmatrix}.
+\]
+\end{proposition}
+
+\begin{proof}
+The Mellin--Barnes integral in the proof of
+Proposition~\ref{prop:z34-growth}, with $n=0$, and the reflection formula
+\cite[Eq.~5.5.3]{DLMF} give
+\[
+\mathcal{G}_0(z)=\frac{1}{2\pi i}\int_{\frac12+i\mathbb R}
+\frac{\pi^2z^{-s}}{\sin^2(\pi s)s^3(s+1)}\,ds.
+\]
+Applying $\theta^k$ multiplies the integrand by $(-s)^k$.
+At $z=1$, close the contour to the right along lines
+$\operatorname{Re}s=m+\tfrac12$. For $0\leq k\leq3$ their integrals are
+$O(m^{k-4})\to0$; the horizontal integrals vanish exponentially.
+The poles at positive integers are double, and the clockwise orientation gives
+\[
+(\theta^k\mathcal{G}_0)(1)
+=(-1)^{k+1}\sum_{\ell=1}^{\infty}
+\left[\frac{d}{ds}\frac{1}{s^{3-k}(s+1)}\right]_{s=\ell}.
+\]
+Partial fractions give
+\[
+\mathcal{S}_G(0)=\bigl(
+1-2\zeta(3)+3\zeta(4),\ 1-2\zeta(3),\ 1,\ 1-\zeta(2)\bigr),
+\]
+and multiplication by $I_G$ gives the claimed identity.
+\end{proof}
+
+\begin{proposition}
+\label{prop:z34-rates}
+The trajectory matrix $G_{y_0,v_G}(n)$ has exponential growth rates given by
+two conjugate dominant roots
+\[
+\rho_{1,2}\approx(2.803\pm6.487i)\cdot10^{25},
+\qquad \rho_3=-1,
+\qquad \rho_4\approx7.203\cdot10^{-24}.
+\]
+No factorial normalization is needed. The characteristic roots at infinity
+of the restricted matrix $Q(n)$ are $\rho_1,\rho_2,\rho_4$.
+\end{proposition}
+
+\begin{proof}
+The roots are those of the characteristic polynomial at infinity, extracted
+in the supplied code. The factor corresponding to $\rho_3=-1$ is removed
+by the block restriction in Proposition~\ref{prop:z34-coboundary}.
+\end{proof}
+
+
+\paragraph{Exact spectral data and a rational rate certificate.}
+The restricted characteristic polynomial is
+\[
+ \chi(X)=X^3-aX^2+bX-c,
+\]
+where
+\begingroup\scriptsize
+\begin{gather*}
+ a=\frac{83220721427294106907399200607730930785765129529801897078934559}{1484577825190137274336280508756918272}\,\\
+ b=\frac{731334801243107466089356596505717853275074571608716447379201100334794667003154611901941573810757}{146466868948884247884332915718530654652342544}\,\\
+ c=\frac{76623012348334313797938377862237790794460627983667564193521662995163373351121226574589853696}{2130520759189220333584634002331004844478493702212809977860478179}\,
+\end{gather*}
+\endgroup
+Its discriminant is negative. Put $u=7203/10^{27}$ and
+$\varepsilon=102/10^{51}$. Exact rational arithmetic gives
+\[
+ c>0,\qquad\chi(0)<0<\chi(u),\qquad u^3<c\varepsilon^2.
+\]
+There is therefore exactly one real root $r$ and $0<r<u$; the other
+two roots are a nonreal conjugate pair. Their common modulus is
+$\sqrt{c/r}$ by the product of the three roots. Consequently
+\[
+ \vartheta^2=\frac{r^3}{c}<\varepsilon^2,
+ \qquad \vartheta<\varepsilon<e^{-112.8}.
+\]
+The last inequality is certified by dyadic reduction and the rational
+series bounds for $\log$ given later in the height proof.
+The exact limiting matrix, characteristic coefficients, nonzero cyclic
+determinant, and rational log bound are recorded in
+\texttt{certificates/spectral\_data.json}. The root decimals are only
+illustrations; the inequalities above are the certificate to formalize.
+
+\begin{proposition}
+\label{prop:z34-growth}
+Let
+\[
+\eta=\frac{16^{16}15^{30}2^2 3^3 4^4}{13^{13}12^{12}30^{30}}
+\left(\frac32\right)^{55}\approx8.517\cdot10^{-4}<1.
+\]
+Then
+\[
+(\theta^k\mathcal{G}_n)(1)=O(n^k\eta^n),
+\qquad k=0,1,2,3.
+\]
+\end{proposition}
+
+\begin{proof}
+Put $L=14n+1$ and $\mathfrak c_n=(14n)!(16n)!/[(11n)!^2(8n+1)!]$.
+The Mellin--Barnes representation \cite[Eq.~16.17.1]{DLMF} is
+\[
+\mathcal{G}_n(z)=\frac{1}{2\pi i}
+\int_{2n+\frac12-i\infty}^{2n+\frac12+i\infty}
+\frac{
+ \Gamma(16n+1-s)\Gamma(17n+1-s)
+}{
+ \Gamma(s+11n+1)\Gamma(s+12n+1)\Gamma(s+10n+2)
+}\prod_{j=-2}^{2}\Gamma(s+jn)\,z^{-s}\,ds.
+\]
+The contour is traversed from bottom to top. Its left pole families
+lie in $s\leq2n$ and its right pole families in $s\geq16n+1$,
+so it separates them for every $n$.
+With $s=2n+w$, the contour becomes the fixed line
+$\mathcal C=\tfrac12+i\mathbb R$.
+This is a change of variable; no poles are crossed.
+The integral converges absolutely for $z>0$.
+
+Apply Euler's beta integral \cite[Eq.~5.12.1]{DLMF} to
+\[
+\frac{\Gamma(w+2n)}{\Gamma(w+13n+1)},\qquad
+\frac{\Gamma(w+3n)}{\Gamma(w+14n+1)},\qquad
+\frac{\Gamma(w+4n)}{\Gamma(w+12n+2)}.
+\]
+This gives
+\[
+\begin{aligned}
+\mathcal{G}_n(z)
+&=\frac{z^{-2n}}{2\pi i(11n)!^2(8n+1)!}
+\int_{\mathcal C}
+\Gamma(w)\Gamma(w+n)\Gamma(14n+1-w)\Gamma(15n+1-w)z^{-w}\\
+&\quad\times\left[\int_{[0,1]^3}
+x^{w+2n-1}y^{w+3n-1}t^{w+4n-1}
+(1-x)^{11n}(1-y)^{11n}(1-t)^{8n+1}
+\,dx\,dy\,dt\right]dw.
+\end{aligned}
+\]
+All beta parameters have positive real parts on $\mathcal C$.
+Apply Euler's integral once more:
+\[
+\Gamma(w+n)\Gamma(15n+1-w)
+=(16n)!\int_0^1 r^{w+n-1}(1-r)^{15n-w}\,dr.
+\]
+Absolute convergence permits interchanging the integrals.
+Writing $u=xyt$, the remaining integral on the same contour is
+\cite[Eq.~5.13.1]{DLMF}
+\[
+\frac{1}{2\pi i}\int_{\mathcal C}
+\Gamma(w)\Gamma(14n+1-w)
+\left(\frac{z(1-r)}{ur}\right)^{-w}dw
+=(14n)!\left(\frac{ur}{z(1-r)+ur}\right)^{14n+1}.
+\]
+Its argument is positive and its contour condition
+$0<\tfrac12<14n+1$ holds for every $n$.
+Consequently, we obtain the positive integral
+\[
+\mathcal{G}_n(z)=z^{-2n}\mathfrak c_n\int_{[0,1]^4}
+\frac{
+x^{16n}y^{17n}t^{18n}r^{15n}
+(1-x)^{11n}(1-y)^{11n}(1-t)^{8n+1}(1-r)^{15n}
+}{[z(1-r)+xytr]^{14n+1}}
+\,dx\,dy\,dt\,dr.
+\]
+In particular, $z=1$ can be substituted directly.
+Since $1-r+xytr\geq xyt$, for $n\geq1$ Euler's integral gives
+\[
+\begin{aligned}
+0<\mathcal{G}_n(1)
+&\leq \mathfrak c_n\int_{[0,1]^4}
+x^{2n-1}y^{3n-1}t^{4n-1}r^{15n}
+(1-x)^{11n}(1-y)^{11n}(1-t)^{8n+1}(1-r)^{15n}
+\,dx\,dy\,dt\,dr\\
+&=\frac{(16n)!(15n)!^2(2n-1)!(3n-1)!(4n-1)!}
+{(13n)!(12n+1)!(30n+1)!}
+=:\mathfrak d_n.
+\end{aligned}
+\]
+The factorial ratios satisfy, for $n\geq2$,
+\[
+\frac{D_{n+1}}{\mathfrak d_n}
+\leq
+\frac{16^{16}15^{30}2^2 3^3 4^4}{13^{13}12^{12}30^{30}}
+\left(\frac{n+1}{n}\right)^{55}
+\leq
+\frac{16^{16}15^{30}2^2 3^3 4^4}{13^{13}12^{12}30^{30}}
+\left(\frac32\right)^{55}
+=:\eta\approx8.517\cdot10^{-4}<1.
+\]
+Here the $55$ numerator factors are bounded above using $n+1$,
+and the $55$ denominator factors are bounded below using $n$.
+Iterating gives, for a constant $C>0$ independent of $n$,
+\[
+0<\mathcal{G}_n(1)\leq \mathfrak d_n\leq C\eta^n\longrightarrow0.
+\]
+
+Finally, $\theta^k$ inserts the factor $(-s)^k$ in the Mellin--Barnes
+integrand. For $k\leq3$, these integrals
+remain absolutely convergent at $z=1$ on the same contour.
+Put $a=2n$. After $s=a+w$, the factor is
+$(-1)^k(w+a)^k$.
+For $n\geq1$ and $k\leq3$, the polynomial $(w+a)^k$ has an expansion
+in the rising factorials $(w)_j$ with nonnegative coefficients.
+Each $(w)_j$ replaces $\Gamma(w)$ by $\Gamma(w+j)$; the same Mellin
+inversion then multiplies the positive integrand at $z=1$ by
+$(L)_j[(1-r)/(1-r+ur)]^j\leq(L)_j$.
+For clarity, the expansions for the only required orders are
+\begin{align*}
+ (w+a)^0&=1,\\
+ (w+a)^1&=(w)_1+a,\\
+ (w+a)^2&=(w)_2+(2a-1)(w)_1+a^2,\\
+ (w+a)^3&=(w)_3+(3a-3)(w)_2+(3a^2-3a+1)(w)_1+a^3.
+\end{align*}
+All coefficients are nonnegative when $a=2n\geq2$.
+Evaluating the polynomial expansion at $w=L$ bounds the combined
+factor by $(a+L)^k$. Hence
+\[
+|(\theta^k\mathcal{G}_n)(1)|
+\leq
+(16n+1)^k\mathfrak d_n
+\leq C(16n+1)^k\eta^n\longrightarrow0,
+\qquad 0\leq k\leq3.
+\]
+Since $16n+1=O(n)$, the claim follows.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:z34-limit}]
+Assume the modal-basis theorem with the hypotheses stated in
+Section~\ref{limit-interface}. By Proposition~\ref{prop:z34-growth}, every component of the
+state vector of $(G^{5,2}_{5,5}(1),y_0,v_G)_F$ decays exponentially, so by
+Proposition~\ref{prop:z34-rates} it does not grow at any of the rates
+$|\rho_1|,|\rho_2|,|\rho_3|$; hence the state is the recessive solution.
+Write $\widehat{\mathcal S}_G(n)$ for its first three components and
+$\widehat I_G$ for the first three columns of $I_G$.
+The state relation and the block form in
+Proposition~\ref{prop:z34-coboundary} give
+\[
+\mathcal S_G(n+1)=\mathcal S_G(n)G_{y_0,v_G}(n),
+\qquad
+\widehat{\mathcal S}_G(n+1)=\widehat{\mathcal S}_G(n)Q(n).
+\]
+Hence $\widehat{\mathcal S}_G(n)$ is the recessive solution of $Q(n)$
+obtained from the actual Meijer G state. Since $I_G=(\widehat I_G\;0)$,
+\[
+\widehat I_G\widehat{\mathcal S}_G(0)^T
+=I_G\mathcal S_G(0)^T
+=6\begin{pmatrix}A\zeta(3)+B\zeta(4)\\1\end{pmatrix}.
+\]
+The block form also gives the exact restriction
+\[
+I_GW_G(N)^{-T}
+=\bigl(\widehat I_GW_Q(N)^{-T}\;0\bigr),
+\qquad W_Q(N)=Q(0)\cdots Q(N-1).
+\]
+Thus the initial conditions already exclude the $-1$ mode; the
+rank-three connection transfers this restriction to the forward walk.
+Using the modal-basis statement and Lemma~\ref{dual-mode-transfer},
+with the projection condition verified below, the dual scheme restricted to
+$Q(n)$, with initial condition $\widehat I_G$, converges to
+$(I_G\mathcal{S}_G(0)^T)_1/(I_G\mathcal{S}_G(0)^T)_2$.
+Proposition~\ref{prop:z34-initial-values} proves that this ratio is
+$A\zeta(3)+B\zeta(4)$.
+
+At the source point, the coboundary of
+Proposition~\ref{prop:z34-coboundary} satisfies
+\[
+E(0)=\begin{pmatrix}1&0&0\\0&0&0\\0&1&0\\0&0&1\end{pmatrix},
+\qquad H(0)=\begin{pmatrix}0&0&1\\-1&2&-1\\-2&2&0\end{pmatrix},
+\]
+\[
+I_FE(0)H(0)=2\widehat I_G.
+\]
+Equivalently, $I_FK(0)=2I_G$.
+Consequently,
+\[
+I_FE(0)H(0)\widehat{\mathcal S}_G(0)^T
+=12\begin{pmatrix}A\zeta(3)+B\zeta(4)\\1\end{pmatrix}.
+\]
+Put $e_0=(1,0,0)^T$ and $\Delta(n)=\prod_{j=8}^{12}(jn+1)$.
+The supplied code verifies
+\[
+H(n)^{-1}e_0=\frac{1}{\Delta(n)}
+\begin{pmatrix}1\\10n+1\\(10n+1)^2\end{pmatrix},
+\qquad K(n)J^TH(n)^{-1}e_0=v.
+\]
+Thus the exact walk identity gives
+\[
+I_FW_F(N)v
+=2\left(\prod_{n=0}^{N-1}\frac{\mathfrak a(n)}{\mathfrak b(n)}\right)
+\widehat I_G W_Q(N)^{-T}H(N)^{-1}e_0.
+\]
+The common scalar cancels in the ratio. For
+$T_n=\operatorname{diag}(1,n,n^2)$ and
+$Q_\infty=\lim_{n\to\infty}T_nQ(n)T_{n+1}^{-1}$, the transported
+projection satisfies $\Delta(n)T_n^{-1}H(n)^{-1}e_0\to w=(1,10,100)^T$.
+The supplied code verifies exactly that $Q_\infty$ has distinct
+eigenvalues and
+\[
+\det\bigl[w,\ Q_\infty^{-T}w,\ (Q_\infty^{-T})^2w\bigr]\ne0.
+\]
+Thus $w$ has a nonzero coefficient along every eigenvector in an
+eigenbasis of $Q_\infty^{-T}$, including the eigenvector for the unique
+dominant dual root $\rho_4^{-1}$. The modal-basis statement in Section~\ref{limit-interface} and
+Lemma~\ref{dual-mode-transfer} now give the asserted contribution and
+rate. The balancing matrices and scalar $\Delta(n)$ introduce only polynomial
+factors and a scalar common to numerator and denominator.
+The denominator's pairing with the initial state is nonzero, so
+this gives $R_N\to A\zeta(3)+B\zeta(4)$.
+Finally, Proposition~\ref{prop:z34-rates} gives the exponential error
+factor $\vartheta=|\rho_4|/|\rho_1|$, since $|\rho_1|=|\rho_2|$.
+\end{proof}
+
+
+
+\section*{Detailed arithmetic and proposed walk identification}
+The following derivation uses the older partial-fraction notation so
+that the complete-residue calculation can be stated precisely. The
+normalization translation above makes it an argument about the same
+three finite sums. The auxiliary rational function is used only for
+this additional cancellation and the walk identification; it is not
+needed for the coefficientwise denominator clearing in the main text.
+\section{Exact objects and statement}
+Let
+\[
+ F_n(t)=\frac{\prod_{u=0}^2(t-(10+u)n)_{10n}}
+ {(t+n)_{16n+1}(t+2n)_{14n+1}},\qquad
+ C_n=\frac{(15n)!^2}{(10n)!^3},\quad
+ d_m=\mathop{\rm lcm}(1,\ldots,m).
+\]
+Write its partial fractions as
+\[
+ F_n(t)=\sum_{j=n}^{17n}\left(\frac{a_j}{(t+j)^2}+\frac{b_j}{t+j}\right),
+ \qquad a_j=0\quad\hbox{outside }[2n,16n].
+\]
+Define, entirely by finite rational sums,
+\begin{align}
+ Q_n&=\sum_j a_j,\nonumber\\
+ P_{3,n}&=\sum_j\left(a_jH^{(3)}_{j+2n}+\tfrac12 b_jH^{(2)}_{j+2n}\right),\label{arith-readout}\\
+ P_{4,n}&=\sum_j\left(a_jH^{(4)}_{j+2n}+\tfrac13 b_jH^{(3)}_{j+2n}\right).\nonumber
+\end{align}
+Here $H_m^{(r)}=\sum_{k=1}^m k^{-r}$. Put
+\[
+ X_n=6C_nd_{19n}^4(Q_n,P_{3,n},P_{4,n}).
+\]
+This is the integer normalization whose gcd is estimated; it is not a
+reduced denominator.
+
+The eight factorial pairings used below are as follows. The column $b$
+is a permutation of $(-2,-1,0,1,2)$ and realizes the displayed unordered
+lengths $L=(10+b_0,11+b_1,12+b_2)$ and $D=(16-b_3,17-b_4)$.
+\[
+\begin{array}{c|c|c}
+L&D&b\\\hline
+(8,13,13)&(17,17)&(-2,2,1,-1,0)\\
+(11,11,11)&(14,19)&(1,0,-1,2,-2)\\
+(9,9,14)&(16,16)&(-1,-2,2,0,1)\\
+(12,12,12)&(18,18)&(2,1,0,-2,-1)\\
+(11,11,14)&(18,18)&(1,0,2,-2,-1)\\
+(9,9,12)&(14,16)&(-1,-2,0,2,1)\\
+(10,10,10)&(14,16)&(0,-1,-2,2,1)\\
+(9,11,14)&(17,17)&(1,-2,2,-1,0)
+\end{array}
+\]
+Let $\mathcal B$ denote these eight rows. Set
+\begin{align*}
+ c(x)&=2\lfloor15x\rfloor-3\lfloor10x\rfloor,\\
+ \phi(x)&=\max\left(0,\max_{(L,D)\in\mathcal B}
+ \left[c(x)-\sum_{d\in D}\lfloor dx\rfloor+
+                  \sum_{l\in L}\lfloor lx\rfloor\right]\right).
+\end{align*}
+Call a prime eligible when
+\[
+ p>29,\qquad p^2>30n,\qquad p\nmid n.
+\]
+For eligible primes define
+\[
+ h_n(p)=\begin{cases}3&18n<p<19n,\\2&17n<p<18n,\\
+ 1&16n<p<17n,\\0&\text{otherwise},\end{cases}
+ \qquad s_n(p)=\mathbf1_{8n<p<11n},
+\]
+and define the explicit positive integer
+\begin{equation}\label{arith-G}
+ G_n=\prod_{p\ {
+m eligible}}p^{\phi(n/p)+h_n(p)+s_n(p)}.
+\end{equation}
+Only primes $p\leq19n$ occur with nonzero exponent.
+
+\begin{theorem}\label{arith-main}
+For every integer $n\geq1$, $X_n\in\Z^3$ and
+\[
+ G_n\mid\gcd(X_{n,0},X_{n,1},X_{n,2}).
+\]
+Furthermore
+\[
+ \liminf_{n\to\infty}\frac{\log G_n}{n}
+ \geq29.0047746843482\ldots>29.004.
+\]
+For every fixed $A,B\in\Q$, reduce
+\[
+ \frac{AP_{3,n}+BP_{4,n}}{Q_n}=\frac{p_n}{q_n},\qquad q_n>0.
+\]
+Then, for all sufficiently large $n$,
+\[
+ q_n\leq\exp(112.5n).
+\]
+These assertions hold at every integer depth; no fractional lattice step
+or restriction to a subsequence is used in this arithmetic argument.
+\end{theorem}
+
+\section{The finite sums, explained before estimating their gcd}
+\subsection{The hypergeometric sequence is a finite sum}
+The series in the question is
+\[
+ \mathcal F_n=\sum_{k=0}^{14n}
+ \frac{(1+13n)_k(1+14n)_k(-14n)_k(-15n)_k(1+12n)_k}
+ {(1+n)_k(1+2n)_k(1+3n)_k(1+4n)_k\,k!}.
+\]
+It terminates because $(-14n)_{14n+1}=0$. There is no convergence
+question in this definition. Put
+\[
+ \rho_n=(-1)^n\frac{(12n)!(13n)!}
+ {(2n)!(3n)!(4n)!n!(15n)!}.
+\]
+For $2n\leq j\leq16n$, direct cancellation of factorials gives
+\begin{equation}\label{arith-explicit-a}
+ a_j=(-1)^n
+ \frac{(j+10n)!(j+11n)!(j+12n)!}
+ {j!(j+n)!(j+2n)!(j-n)!(j-2n)!(16n-j)!(17n-j)!}.
+\end{equation}
+In particular $a_{2n}=\rho_n$. For $0\leq k<14n$ the ratio of successive
+terms is
+\[
+ \frac{a_{2n+k+1}}{a_{2n+k}}=
+ \frac{(1+12n+k)(1+13n+k)(1+14n+k)(k-14n)(k-15n)}
+ {(1+k)(1+n+k)(1+2n+k)(1+3n+k)(1+4n+k)}.
+\]
+This is exactly the ratio of successive summands in $\mathcal F_n$.
+Since their first terms also agree after multiplication by $\rho_n$,
+\begin{equation}\label{arith-hypergeom-q}
+ Q_n=\sum_{j=2n}^{16n}a_j=\rho_n\mathcal F_n.
+\end{equation}
+
+\subsection{Visible integrality: five binomial coefficients}
+Multiplying \eqref{arith-explicit-a} by $C_n$ and grouping the factorials gives
+the following identity, without an estimate or a divisibility conjecture:
+\begin{equation}\label{arith-five-binomials}
+ \boxed{\displaystyle
+ C_na_j=(-1)^n
+ \binom{j+10n}{10n}\binom{j+11n}{10n}\binom{j+12n}{10n}
+ \binom{15n}{j-n}\binom{15n}{j-2n}.}
+\end{equation}
+Every binomial coefficient on the right has nonnegative integer arguments
+in its allowed range. Therefore every summand is an integer. Consequently
+\[
+ C_nQ_n=(-1)^n\sum_{j=2n}^{16n}
+ \binom{j+10n}{10n}\binom{j+11n}{10n}\binom{j+12n}{10n}
+ \binom{15n}{j-n}\binom{15n}{j-2n}\in\Z.
+\]
+Equivalently $C_n\rho_n$ clears the denominator of the displayed
+hypergeometric value $\mathcal F_n$. Notice the factor $\rho_n$:
+$Q_n$ and $\mathcal F_n$ are not the same normalization.
+For example, at $n=1,j=2$ the five factors are
+$\binom{12}{10},\binom{13}{10},\binom{14}{10},\binom{15}{1},\binom{15}{0}$,
+and their product has sign $-1$. This illustrates the same identity used
+at every depth; no numerical example is needed for its proof.
+
+\subsection{Why introduce the rational function $F_n(t)$?}
+It is a compact way to encode the coefficients of three finite sums.
+Its numerator has roots in the three intervals
+$[1,10n]$, $[n+1,11n]$, $[2n+1,12n]$. Its denominator has roots in
+$[-17n,-n]$ and $[-16n,-2n]$. A root appearing in both denominator
+intervals gives a double pole. A root in just one gives a simple pole.
+At a double pole, remove the factor $(t+j)^{-2}$:
+\[
+ A_j(t)=(t+j)^2F_n(t),\qquad a_j=A_j(-j),\qquad b_j=A'_j(-j).
+\]
+At a simple pole, $a_j=0$ and $b_j=((t+j)F_n(t))|_{t=-j}$.
+These formulas define the partial-fraction coefficients by ordinary
+polynomial evaluation and differentiation. Evaluating $A_j(-j)$ gives
+\eqref{arith-explicit-a}.
+If an entirely factorial-and-harmonic description is preferred, set
+$H_m=\sum_{k=1}^m1/k$, with $H_0=0$. At a double pole,
+\begin{align*}
+ b_j=a_j\bigg(&\sum_{u=0}^2(H_{j+un}-H_{j+(10+u)n})
+ +H_{j-n}-H_{17n-j}\\
+ &+H_{j-2n}-H_{16n-j}\bigg),\qquad 2n\leq j\leq16n.
+\end{align*}
+This follows by logarithmically differentiating the factors left after
+removing $(t+j)^2$. At the simple poles the corresponding formulas are
+\[
+ b_j=\begin{cases}
+ \displaystyle(-1)^{j-n}
+ \frac{\prod_{u=10}^{12}(j+un)!\,(2n-j-1)!}
+ {j!(j+n)!(j+2n)!(j-n)!(17n-j)!(16n-j)!},&n\leq j<2n,\\[6pt]
+ \displaystyle(-1)^{j-n+1}
+ \frac{\prod_{u=10}^{12}(j+un)!\,(j-16n-1)!}
+ {j!(j+n)!(j+2n)!(j-n)!(17n-j)!(j-2n)!},&16n<j\leq17n.
+ \end{cases}
+\]
+Thus \eqref{arith-readout} specifies all three sequences using only finite
+factorials and harmonic sums. The rational-function notation abbreviates
+these explicit formulas; it does not supply an unproved integrality claim.
+
+The denominator degree exceeds the numerator degree by two, so
+$F_n(t)=O(t^{-2})$. Comparing the coefficient of $1/t$ in its partial
+fractions gives $\sum_jb_j=0$. Now differentiate the partial fractions:
+\[
+ -\tfrac12 F'_n(t)=\sum_j\left(\frac{a_j}{(t+j)^3}
+                         +\frac{b_j/2}{(t+j)^2}\right),\quad
+ \tfrac16 F''_n(t)=\sum_j\left(\frac{a_j}{(t+j)^4}
+                         +\frac{b_j/3}{(t+j)^3}\right).
+\]
+For $r>1$,
+\[
+ \sum_{k=2n+1}^{\infty}\frac1{(k+j)^r}
+ =\zeta(r)-H^{(r)}_{j+2n}.
+\]
+There are only finitely many $j$, and each series converges absolutely.
+Summing and using $\sum b_j=0$ proves the exact identities
+\begin{equation}\label{arith-derivative-tails}
+ \boxed{\displaystyle
+ Q_n\zeta(3)-P_{3,n}=-\tfrac12\sum_{k=2n+1}^{\infty}F'_n(k),\qquad
+ Q_n\zeta(4)-P_{4,n}=\tfrac16\sum_{k=2n+1}^{\infty}F''_n(k).}
+\end{equation}
+This explains both the zeta values and the harmonic corrections in
+\eqref{arith-readout}. It does not yet estimate the size of these errors.
+
+\subsection{Clearing the simple-pole coefficients, explicitly}
+Define
+\[
+ P(t)=\prod_{u=0}^2\binom{t-un-1}{10n},\qquad
+ L_c(t)=\frac{(15n)!}{\prod_{k=c}^{c+15n}(t+k)}.
+\]
+Regrouping precisely the same factors in $F_n$ gives
+\begin{equation}\label{arith-reference-factorization}
+ C_nF_n(t)=P(t)L_n(t)L_{2n}(t).
+\end{equation}
+For integer arguments, polynomial binomial coefficients are integers,
+including negative arguments, because
+$\binom{-a}{m}=(-1)^m\binom{a+m-1}{m}$ for $a\geq1$.
+The simple partial fractions of $L_c$ are
+\[
+ L_c(t)=\sum_{j=c}^{c+15n}\frac{r_{c,j}}{t+j},\qquad
+ r_{c,j}=(-1)^{j-c}\binom{15n}{j-c}\in\Z.
+\]
+Indeed the product of the other denominator factors at $t=-j$ is
+$(-1)^{j-c}(j-c)!(c+15n-j)!$.
+At a pole of $L_c$ let
+\[
+ s_{c,j}=\sum_{\substack{c\leq k\leq c+15n\\k\ne j}}
+             \frac{r_{c,k}}{k-j}.
+\]
+Thus $L_c(t)=r_{c,j}/(t+j)+s_{c,j}+O(t+j)$ near $-j$.
+At a shared pole, multiply these expansions and the Taylor expansion
+$P(t)=P(-j)+(t+j)P'(-j)+O((t+j)^2)$. The result is
+\begin{align*}
+ C_na_j&=P(-j)r_{n,j}r_{2n,j},\\
+ C_nb_j&=P'(-j)r_{n,j}r_{2n,j}
+       +P(-j)(r_{n,j}s_{2n,j}+r_{2n,j}s_{n,j}).
+\end{align*}
+At a pole of only $L_c$, with the other factor denoted $L_{c'}$, it gives
+\[
+ C_nb_j=P(-j)r_{c,j}L_{c'}(-j),\qquad
+ L_{c'}(-j)=\sum_{k=c'}^{c'+15n}\frac{r_{c',k}}{k-j}.
+\]
+Every nonzero difference $k-j$ here has absolute value at most $16n$.
+Therefore $d_{16n}$ clears every $s_{c,j}$ and every displayed value
+$L_{c'}(-j)$.
+
+To treat the derivative, Vandermonde's polynomial identity says
+\[
+ \binom{k+x}{m}=\sum_{h=0}^{m}\binom{k}{m-h}\binom{x}{h}.
+\]
+The coefficient of $x$ in $\binom{x}{h}$ is $(-1)^{h-1}/h$ for $h\geq1$.
+Differentiating at $x=0$ therefore gives
+\[
+ \left.\frac{d}{dx}\binom{x}{m}\right|_{x=k}
+ =\sum_{h=1}^{m}\binom{k}{m-h}\frac{(-1)^{h-1}}h.
+\]
+Since each factor of $P$ has degree $10n$, the product rule shows that
+$d_{10n}P'(-j)$ is an integer. As $d_{10n}\mid d_{16n}$, the preceding
+explicit formulas prove
+\[
+ C_na_j\in\Z,\qquad d_{16n}C_nb_j\in\Z.
+\]
+
+\subsection{Clearing the two numerator sums term by term}
+Write $D=d_{19n}$, $A_j=C_na_j$ and $B_j=DC_nb_j$.
+Both $A_j$ and $B_j$ are integers. For $m\leq19n$,
+\[
+ D^rH_m^{(r)}=\sum_{k=1}^m(D/k)^r\in\Z,
+\]
+because every $k$ divides $D$. The exact normalized numerator formulas are
+\begin{align*}
+ 6C_nD^4P_{3,n}
+ &=\sum_j\left(6A_jD^4H^{(3)}_{j+2n}
+                         +3B_jD^3H^{(2)}_{j+2n}\right),\\
+ 6C_nD^4P_{4,n}
+ &=\sum_j\left(6A_jD^4H^{(4)}_{j+2n}
+                         +2B_jD^3H^{(3)}_{j+2n}\right).
+\end{align*}
+Every term on both right-hand sides is an integer. Also
+$6C_nD^4Q_n=6D^4\sum_jA_j\in\Z$.
+This proves $X_n\in\Z^3$ with every denominator accounted for.
+In particular, we have not assumed $C_nP_{3,n}$ or $C_nP_{4,n}$ is integral.
+
+\section{Integrality from factorial blocks}
+For any permutation $b$ of $(-2,-1,0,1,2)$, put
+\[
+ C_b(n)=\frac{\prod_{d\in D}(dn)!}{\prod_{l\in L}(ln)!}.
+\]
+The reference $C_n$ corresponds to $b=(0,-1,-2,1,2)$.
+
+\begin{lemma}\label{arith-integral}
+For each such pairing,
+\[
+ C_ba_j\in\Z,\qquad d_{19n}C_bb_j\in\Z,
+ \qquad6C_bd_{19n}^4(Q_n,P_{3,n},P_{4,n})\in\Z^3.
+\]
+For the reference pairing the second assertion improves to
+$d_{16n}C_nb_j\in\Z$.
+\end{lemma}
+\begin{proof}
+The gamma quotient for $F_n$ has numerator shifts $-2n,-n,0,n,2n$
+and denominator shifts $-10n,-11n,-12n,16n+1,17n+1$.
+Explicitly, using $(x)_m=\Gamma(x+m)/\Gamma(x)$ gives
+\[
+ F_n(t)=\frac{\Gamma(t-2n)\Gamma(t-n)\Gamma(t)
+                    \Gamma(t+n)\Gamma(t+2n)}
+ {\Gamma(t-10n)\Gamma(t-11n)\Gamma(t-12n)
+                    \Gamma(t+16n+1)\Gamma(t+17n+1)}.
+\]
+This identity is an identity of rational functions after cancellation;
+we never evaluate the individual gamma factors at their poles.
+Permuting the five numerator factors leaves the rational function
+unchanged. Pair the first three with the first three denominator factors,
+and the last two with the last two denominator factors.
+Pairing these factors gives exactly
+\[
+ C_bF_n(t)=
+ \prod_{i=0}^2\binom{t+b_in-1}{(10+i+b_i)n}
+ \frac{((16-b_3)n)!}{\prod_{j=b_3n}^{16n}(t+j)}
+ \frac{((17-b_4)n)!}{\prod_{j=b_4n}^{17n}(t+j)}.
+\]
+Each reciprocal factor has integral simple-pole residues, since
+\[
+ \mathop{\rm Res}_{t=-j}
+ \frac{m!}{\prod_{k=a}^{a+m}(t+k)}
+ =(-1)^{j-a}\binom m{j-a}.
+\]
+The polynomial factors are integer-valued on all integers. Their
+individual degrees are at most $14n$, and their derivatives at integers
+are cleared by $d_{14n}$. Indeed Vandermonde's polynomial identity gives
+\[
+ \left.\frac{d}{dx}\binom{x}{m}\right|_{x=k}
+ =\sum_{h=1}^m\binom{k}{m-h}\frac{(-1)^{h-1}}h.
+\]
+The product rule gives the same derivative assertion for the polynomial
+product, without replacing $14n$ by its total degree.
+
+At a shared pole the double coefficient is a product of integer values
+and residues. The simple coefficient adds derivative terms and terms
+with denominators equal to differences of pole indices. At a pole of
+only one reciprocal factor, only the latter denominators occur. All
+index differences are at most $19n$. This proves the two coefficient
+assertions; apparent extra poles cancel identically.
+For the reference pairing, the two reciprocal intervals are
+$[n,16n]$ and $[2n,17n]$, so differences are at most $16n$ and the
+polynomial degrees are $10n$.
+
+Finally $j+2n\leq19n$ at actual poles, and $d_{19n}^rH_m^{(r)}$ is
+integral for $m\leq19n$. Formula \eqref{arith-readout} and the factor $6$
+give the asserted integer triples.
+\end{proof}
+
+For eligible primes every factorial argument in $C_b$ is smaller than
+$p^2$. Legendre's formula therefore gives
+\[
+ \vp(C_n/C_b)=c(n/p)-\sum_{d\in D}\lfloor dn/p\rfloor
+                         +\sum_{l\in L}\lfloor ln/p\rfloor.
+\]
+Here $v_p(r)$ means the exponent of $p$ in a nonzero rational number $r$:
+write $r=p^eu/v$ with $p$ dividing neither $u$ nor $v$, and set $v_p(r)=e$.
+In particular an integer has nonnegative valuation; set $v_p(0)=+\infty$.
+To see the divisibility consequence without skipping a step, define
+\[
+ Y_b=6C_b d_{19n}^4(Q_n,P_{3,n},P_{4,n})\in\Z^3.
+\]
+We have the exact vector equality $X_n=(C_n/C_b)Y_b$. Consequently,
+for each coordinate $i$,
+\[
+ v_p(X_{n,i})=v_p(C_n/C_b)+v_p(Y_{b,i})\geq v_p(C_n/C_b).
+\]
+This does not require $C_n/C_b$ to be an integer: only its exponent of
+the particular prime under consideration is relevant. For example,
+if that exponent is two, all three entries of $X_n$ are divisible by $p^2$.
+We already know $X_n$ is integral, so zero is another lower bound.
+Taking the strongest bound separately at each prime proves
+\begin{equation}\label{arith-pairbound}
+ \min_i\vp(X_{n,i})\geq\phi(n/p).
+\end{equation}
+This is the factorial-normalization form of the arithmetic group method
+of Rhin--Viola and Zudilin; no larger transformation group is assumed.
+The freedom used here is simply to rewrite the same rational function
+in eight ways. We neither divide the trajectory by four nor change its
+integer vertices.
+
+\section{The upper harmonic ranges}
+We prove
+\begin{equation}\label{arith-upperrange}
+ \min_i\vp(X_{n,i})\geq h_n(p)\qquad(16n<p<19n).
+\end{equation}
+Here $C_n$ is a $p$-adic unit and $\vp(d_{19n})=1$.
+If $j+2n<p$, Lemma~\ref{arith-integral} with $d_{16n}$ makes the corresponding
+contribution $p$-integral before multiplying by $d_{19n}^4$.
+For the remaining indices, $j>14n$.
+At double poles,
+\begin{equation}\label{arith-aformula}
+ a_j=(-1)^n
+ \frac{(j+10n)!(j+11n)!(j+12n)!}
+ {j!(j+n)!(j+2n)!(j-n)!(j-2n)!(16n-j)!(17n-j)!}.
+\end{equation}
+At a right simple pole, the analogous formula for $|b_j|$ replaces
+the factor $(16n-j)!$ in the denominator by $(j-16n-1)!$ in the
+numerator. These formulas follow directly by removing the pole factors.
+All three large numerator factorials contribute one $p$ each.
+The only denominator factorials that can contain $p$ are
+$j!,(j+n)!,(j+2n)!$. Logarithmic differentiation loses at most one
+$p$ in passing from $a_j$ to $b_j$ at a double pole. Consequently:
+\[
+\begin{array}{c|c|c|c}
+p\text{ range}&\vp(a_j)\text{ at active double poles}
+ &\vp(b_j)\text{ there}&\vp(b_j)\text{ at active simple poles}\\\hline
+(18n,19n)&\text{none}&\text{none}&\geq2\\
+(17n,18n)&\geq2&\geq1&\geq1\\
+(16n,17n)&\geq1&\geq0&\geq0
+\end{array}
+\]
+An order-$r$ harmonic number loses at most $r$ powers of $p$ here.
+Substitution into \eqref{arith-readout}, including the $d_{19n}^4$ factor,
+proves \eqref{arith-upperrange} for $P_3,P_4$. For $Q$ the reference coefficient
+integrality already gives valuation at least $4$ in $X_n$.
+
+\section{One complete residue block}
+\begin{lemma}\label{arith-block}
+For an eligible prime $8n<p<11n$,
+\[
+ \vp(Q_n)\geq1,\qquad \vp(P_{3,n})\geq-1,\qquad
+ \vp(P_{4,n})\geq-2.
+\]
+\end{lemma}
+\begin{proof}
+Write $F_n=\mathcal N/\mathcal D$ with monic polynomials. Numerator roots
+are the three integer intervals $[1,10n],[n+1,11n],[2n+1,12n]$;
+denominator roots are $[-17n,-n],[-16n,-2n]$.
+For $0\leq k<p$ let $c_k,d_k$ count their roots congruent to $k$,
+with multiplicity. We first establish
+\begin{equation}\label{arith-support}
+ c_k-d_k\geq-1,
+ \qquad c_k-d_k=-1\ \Longleftrightarrow\
+ k>12n-p,\quad k\geq2p-16n,\quad k\leq p-2n.
+\end{equation}
+For $0<k<p$ the exact counts are
+\begin{align*}
+ c_k={}&\mathbf1_{k\leq10n}+\mathbf1_{k>n}+\mathbf1_{k>2n}
+       +\sum_{a=10}^{12}\mathbf1_{k\leq an-p},\\
+ d_k={}&\mathbf1_{k\leq p-n}+\mathbf1_{k\leq p-2n}
+       +\mathbf1_{k\geq2p-17n}+\mathbf1_{k\geq2p-16n}
+       +\mathbf1_{k\geq3p-17n}.
+\end{align*}
+On $2n<k\leq p-2n$ the base numerator count is three and the denominator
+count is at most four. It is four precisely when $k\geq2p-16n$;
+there is no extra numerator root precisely when $k>12n-p$.
+On $p-2n<k\leq p-n$ both counts equal three.
+On $p-n<k<p$, $d_k=2+\mathbf1_{k\geq3p-17n}$ and
+$c_k=2+\mathbf1_{k\leq10n}$; an extra denominator root forces
+$p<17n/2$, hence $k<10n$.
+
+For $0<k\leq n$, $c_k\geq2$. If $d_k\geq3$, then $p\leq9n$,
+which makes $c_k=4\geq d_k$. For $n<k\leq2n$, $c_k\geq2$;
+$d_k\geq3$ forces $p\leq19n/2$ and a third numerator root, while
+$d_k=4$ forces $p\leq9n$ and a fourth numerator root.
+Finally, at $k=0$, $c_0=3$ for $p<10n$ and $c_0=2$ for $p>10n$,
+whereas $d_0=2+\mathbf1_{2p\leq17n}$. This proves \eqref{arith-support}.
+On its support, $k>2n$, the numerator roots in this residue class are
+$k,k,k$ and the denominator roots are $k-p,k-p,k-2p,k-2p$.
+
+Reduction modulo $p$ now gives the polynomial
+\[
+ T(X)=(X^p-X)\frac{\overline{\mathcal N}(X)}
+ {\overline{\mathcal D}(X)}\in\Fp[X],\qquad \deg T=p-2.
+\]
+This is a polynomial because each denominator multiplicity exceeds the
+numerator multiplicity by at most one. Away from the support in
+\eqref{arith-support}, $T(k)=0$.
+More explicitly, $X^p-X=\prod_{k\in\Fp}(X-k)$ supplies exactly one
+additional zero at every residue. It therefore cancels any one excess
+denominator factor. Since $\deg\mathcal N=30n$ and
+$\deg\mathcal D=30n+2$, the resulting degree is $p+30n-(30n+2)=p-2$.
+On that support, separating the factors divisible by $p$ and using
+$(X^p-X)'=-1$ yields the local identity
+\begin{equation}\label{arith-local}
+ pF_n(k+pV)\equiv-T(k)\frac{V^3}{(V+1)^2(V+2)^2}\pmod p.
+\end{equation}
+Outside the support this reduction is zero. The integral high-digit
+pole locations in each residue class have pairwise differences of
+absolute value at most two, hence are distinct modulo $p$. Partial
+fraction extraction in this local identity is therefore legitimate.
+It shows that $a_j/p$ and $b_j$ are $p$-integral, with both reducing
+to zero outside the support. Notice that the coefficients of
+$(V+h)^{-2}$ and $(V+h)^{-1}$ in $pF_n(k+pV)$ are $a_j/p$ and $b_j$.
+For clarity, the three numerator roots $k,k,k$ contribute $(pV)^3$,
+and the four denominator roots contribute
+$p^4(V+1)^2(V+2)^2$. The prefactor $p$ cancels this remaining denominator
+$p$. All other factors are units modulo $p$ and become constants.
+Their quotient is $-T(k)$ because the missing factor from $X^p-X$
+has derivative $-1$ at $k$. This proves \eqref{arith-local} directly.
+Outside the support the numerator has at least as many local factors
+as the denominator, and the prefactor $p$ leaves zero modulo $p$.
+
+The elementary identity
+\[
+ \frac{V^3}{(V+1)^2(V+2)^2}
+ =-\frac1{(V+1)^2}+\frac5{V+1}
+  -\frac8{(V+2)^2}-\frac4{V+2}
+\]
+finishes the local calculation. The nodes $j=p-k$ and $j=2p-k$ have
+harmonic indices $j+2n$ respectively less than $p$ and strictly between
+$p$ and $2p$. Thus $p^rH_{j+2n}^{(r)}$ reduces respectively to $0$ and
+$1$: all terms with $p\nmid k$ vanish after multiplication by $p^r$,
+and the only possible remaining summand is $k=p$, which contributes one.
+For the second node the displayed partial fractions give
+\[
+ a_{2p-k}/p\equiv8T(k),\qquad b_{2p-k}\equiv4T(k)\pmod p.
+\]
+Its contribution to $p^2P_{3,n}$ is therefore
+$8T(k)+\tfrac12\,4T(k)=10T(k)$; its contribution to $p^3P_{4,n}$
+is $8T(k)+\tfrac13\,4T(k)=\tfrac{28}3T(k)$.
+The first node contributes zero because its harmonic index is less than
+$p$. Classes outside the support contribute zero by \eqref{arith-local}.
+This proves
+\[
+ p^2P_{3,n}\equiv10\sum_{k\in\Fp}T(k),\qquad
+ p^3P_{4,n}\equiv\tfrac{28}{3}\sum_{k\in\Fp}T(k)\pmod p.
+\]
+For every polynomial of degree less than $p-1$, its sum over $\Fp$
+is zero: check monomials, using the cyclic multiplicative group for
+positive degrees and $\sum1=p=0$ for degree zero.
+Since $\deg T=p-2$, both congruences vanish. Finally $Q_n=\sum a_j$
+belongs to $p\Z_{(p)}$. This proves all three assertions.
+Here $\Z_{(p)}$ denotes rational numbers whose reduced denominator is
+not divisible by $p$. Thus $p^2P_{3,n}\equiv0\pmod p$ means exactly
+$v_p(P_{3,n})\geq-1$, and $p^3P_{4,n}\equiv0\pmod p$ means
+$v_p(P_{4,n})\geq-2$. This is the one step using cancellation among
+different summands, rather than term-by-term denominator clearing.
+\end{proof}
+
+\section{Combining the divisors and evaluating their growth}
+The explicit floor formula gives
+\begin{equation}\label{arith-profilefacts}
+0\leq\phi\leq3,\quad \phi(x+1)=\phi(x),\quad
+\phi(x)=0\ (0<x<1/16),\quad
+\phi(x)\leq c(x)+1\ (1/11<x<1/8).
+\end{equation}
+These are finite floor-function statements; the full exact partition is
+given below. Periodicity follows also from $\sum D=\sum L$ in each row.
+On the harmonic ranges $\phi(n/p)=0$, so \eqref{arith-upperrange} adds exactly
+the stated $h_n(p)$. On $8n<p<11n$, Lemma~\ref{arith-block} gives the common
+valuation of $X_n$ at least $c(n/p)+2\geq\phi(n/p)+1$.
+The two additional prime ranges are disjoint. Elsewhere use
+\eqref{arith-pairbound}. This proves divisibility by \eqref{arith-G}, without adding
+two overlapping lower bounds incorrectly.
+
+On one period, the nonzero intervals of $\phi$ are listed in the table;
+on all omitted intervals it is zero. Endpoint values are irrelevant
+for eligible primes: $n/p$ cannot have fractional part with reduced
+denominator at most $19$.
+\begin{longtable}{ccc@{\qquad}ccc}
+\toprule $a$&$b$&$\phi$&$a$&$b$&$\phi$\\\midrule
+1/15&1/13&1&1/13&1/12&2\\
+1/12&1/10&3&2/15&2/13&1\\
+2/13&3/17&2&3/17&2/11&1\\
+2/11&1/5&2&1/5&4/15&1\\
+4/15&5/17&3&5/17&3/10&2\\
+1/3&2/5&2&2/5&4/9&1\\
+5/11&7/15&1&7/15&9/19&3\\
+9/19&1/2&2&8/15&6/11&1\\
+6/11&3/5&2&3/5&2/3&1\\
+2/3&11/16&3&11/16&9/13&2\\
+9/13&7/10&3&11/15&14/19&2\\
+14/19&3/4&1&3/4&4/5&2\\
+4/5&13/16&1&9/11&16/19&1\\
+13/15&7/8&2&7/8&15/17&3\\
+15/17&9/10&2&14/15&17/18&2\\
+17/18&18/19&1&&&\\\bottomrule
+\end{longtable}
+To verify the table, subdivide $[0,1]$ at every $i/j$, $1\leq j\leq19$.
+Every floor in the definition is constant on each open interval, so one
+exact rational midpoint evaluation per interval proves the entire table.
+
+Let the sum below run over its nonzero intervals, with value $v$.
+Exact rational addition gives
+\begin{align*}
+ S_8&=\sum_{(a,b,v)}v\sum_{k=0}^7
+       \left(\frac1{k+a}-\frac1{k+b}\right)\\
+ &=\frac{22763660987060292807135900464475002389291589797931744263}
+ {1137911390967609212200766394165505379897899492140816000}
+ >20.004.
+\end{align*}
+For each of these finitely many intervals, the prime number theorem
+$\sum_{p\leq x}\log p=x+o(x)$ gives the contribution
+$v((k+a)^{-1}-(k+b)^{-1})n+o(n)$ from
+$n/(k+b)<p<n/(k+a)$. All omitted periods have nonnegative contribution.
+The harmonic ranges contribute $(3+2+1)n+o(n)=6n+o(n)$, and the
+residue block contributes $(11-8)n+o(n)=3n+o(n)$.
+Excluding primes at most $\sqrt{30n}$ costs $O(\sqrt n\log n)=o(n)$,
+because the exponents are bounded. Excluding prime divisors of $n$ costs
+$O(\log n)$, and the finitely many primes at most $29$ cost $O(1)$.
+Therefore
+\[
+ \liminf\frac{\log G_n}{n}\geq S_8+9>29.004.
+\]
+This proves the gcd-growth assertion for all depths, rather than
+extrapolating from computed gcds.
+
+\section{The reduced-denominator bound}
+All nonzero $a_j$ in \eqref{arith-aformula} have the same sign. Hence $Q_n\ne0$.
+For integer $A,B$, the three entries of $X_n/G_n$ are integers, so
+\begin{equation}\label{arith-qbound}
+ q_n\leq\frac{6C_nd_{19n}^4|Q_n|}{G_n}.
+\end{equation}
+For rational $A,B$, clearing their fixed denominators introduces only a
+fixed factor on the right.
+
+We give a separate uniform height bound. Set $f(x)=x\log x$, with $f(0)=0$,
+and, for $2\leq y\leq16$, define
+\[
+ g(y)=\sum_{a=10}^{12}f(y+a)
+ -f(y)-f(y+1)-f(y+2)-f(y-1)-f(y-2)-f(16-y)-f(17-y).
+\]
+Uniform Stirling bounds in \eqref{arith-aformula}, followed by summation over
+at most $14n+1$ indices, give
+\[
+ \limsup\frac{\log(C_n|Q_n|)}n
+ \leq30\log(3/2)+\max_{[2,16]}g.
+\]
+All $n\log n$ and linear Stirling terms cancel; the remaining error is
+$O(\log n)$ uniformly, also at factorial argument zero.
+On $(2,16)$, $g''<0$, since the three positive reciprocal terms
+$1/(y+10),1/(y+11),1/(y+12)$ are already dominated by
+$1/y,1/(y+1),1/(y+2)$ among the negative terms. Moreover
+\[
+ g'(y)=\log\frac{(y+10)(y+11)(y+12)(16-y)(17-y)}
+ {y(y+1)(y+2)(y-1)(y-2)}.
+\]
+The difference between the numerator and denominator here is
+$-30(15y^3+55y^2-1830y-11968)$.
+The unique maximum lies between $a=12.014$ and $b=12.015$, as substitution
+in this cubic verifies. For $y_0=(a+b)/2$, concavity gives
+\[
+ \max g\leq g(y_0)+\tfrac{b-a}{2}|g'(y_0)|.
+\]
+Rational logarithm bounds give
+\[
+ 30\log(3/2)+g(y_0)+\tfrac{b-a}{2}|g'(y_0)|
+ <65.451537<65.46.
+\]
+For completeness, every logarithm in this check is bounded after dyadic
+scaling by the elementary convergent series, for $1\leq z\leq2$ and
+$u=(z-1)/(z+1)$,
+\[
+ 2\sum_{j=0}^{M-1}\frac{u^{2j+1}}{2j+1}
+ \leq\log z\leq
+ 2\sum_{j=0}^{M-1}\frac{u^{2j+1}}{2j+1}
+ +\frac{2u^{2M+1}}{(2M+1)(1-u^2)}.
+\]
+Taking $M=35$ proves the strict comparison by rational arithmetic.
+Finally $\log d_{19n}=19n+o(n)$, so \eqref{arith-qbound} implies
+\[
+ \limsup\frac{\log q_n}n
+ \leq65.46+76-(S_8+9)
+ =112.45522531565\ldots<112.5.
+\]
+This finishes the proof of Theorem~\ref{arith-main}.
+
+\section{Relation to the requested forward walk}\label{arith-walk-section}
+Let $H$ be the user's native $4\times4$ ${}_5F_4$ trajectory matrix and
+$W_n^{(5)}=H(0)\cdots H(n-1)$, for
+\[
+ w_0=(1,1,0,0,1;1,1,1,1),\qquad
+ v=(13,14,-14,-15,12;1,2,3,4).
+\]
+Define
+\[
+ \kappa_n=\frac{(12n)!(13n)!}
+ {(2n)!(3n)!(4n)!n!(15n)!},\qquad \rho_n=(-1)^n\kappa_n.
+\]
+The exact readout identity is
+\begin{equation}\label{arith-bridge}
+ \begin{pmatrix}Q_n\\P_{3,n}\\P_{4,n}\end{pmatrix}
+ =\rho_n
+ \begin{pmatrix}1&0&0&0\\0&0&-1/2&1/4\\0&0&0&-1/6\end{pmatrix}
+ W_n^{(5)}e_0.
+\end{equation}
+In particular the two-row expression in the question is
+$(AP_{3,n}+BP_{4,n})/Q_n$ exactly. The integer normalization of the
+three user's rows $(12,0,0,0),(0,0,-6,3),(0,0,0,-2)$ is
+$\rho_n C_nd_{19n}^4/2$, producing $X_n$.
+Thus the gcd estimate is for the actual rational readouts, with their
+scalar normalization fully specified.
+
+Here is a derivation of the identities used in \eqref{arith-bridge}. In the
+equivalent Meijer--G coordinates the start is
+$(1,1,0,0,0;0,0,0,0,0)$ and the direction is
+$(16,17,-11,-12,-10;2,1,0,-1,-2)$.
+At an integer vertex use the rational gamma quotient
+\[
+ R_w(t)=(-1)^{a_0+a_1}\frac{\prod_j\Gamma(t+b_j)}{\prod_i\Gamma(t+a_i)},
+ \qquad J_w(t)=R_w(t)\prod_j(t+b_j).
+\]
+The gamma functional equation gives the elementary contiguous
+multipliers, with the jet variable represented by $-t$, and
+\[
+ R_w(t)\prod_i(t+a_i-1)=J_w(t-1).
+\]
+Hence the degree-four companion relation is the translate difference
+$J_w(t-1)-J_w(t)$.
+Use the coordinate-block path: lower $a_2,a_3,a_4$, raise $a_0,a_1$,
+raise $b_0,b_1$, then lower $b_3,b_4$. The leading coefficient
+$5-\sum a_i+\sum b_j$ stays at least $3$. For the inverse $a$ moves,
+the old positive $a_i$ never equals a $b_j=0$; for the inverse $b$ moves,
+the new $b_j\in[-2n,-1]$ never equals an $a_i-1$.
+All required inverse generators therefore exist.
+
+Use the two periodic kernels $K_2(t)=\pi^2/\sin^2\pi t$ and
+$K_3(t)=\pi^3\cos\pi t/\sin^3\pi t$.
+During the first three blocks take $0<\Re t<1$.
+At their end, the rational numerator has triple zeros at
+$1,\ldots,10n$, so move the contour to $2n<\Re t<2n+1$ before the last
+block. No residue is crossed. To annihilate the translate difference,
+$J_w$ has a triple zero at $0$ on the first contour and at $2n$ on the
+last contour. At the last endpoint a lost zero of $R_w$ at $2n$ is
+restored by the factor $t+b_4$ in $J_w$. Horizontal integrals vanish
+by exponential decay of the kernels. Thus the period functionals obey
+the contiguous matrices and their companion reductions along this path.
+The sums of double-pole and simple-pole coefficients also annihilate
+integer translate differences and polynomials, and obey the same matrices.
+
+Initially $R_w=t^{-2}$. On the jet basis $(-t)^rR_w$, $0\leq r\leq3$,
+the four functional rows are
+\[
+ (1,0,0,0),\quad(0,-1,0,0),\quad
+ (2\zeta(3),-\zeta(2),1,-1/2),\quad
+ (-3\zeta(4),\zeta(3),0,-1/2).
+\]
+The first two are the coefficient sums. The period values follow by
+closing right and differentiating simple partial fractions; the last
+entries also follow from $K_2=-\pi(\cot\pi t)'$, reflection about $1/2$,
+and $K_3=-K_2'/2$.
+At the endpoint $R_w=(-1)^nF_n$, and the periods are
+$(-1)^n2(Q_n\zeta(3)-P_{3,n})$ and
+$(-1)^n[-3(Q_n\zeta(4)-P_{4,n})]$.
+The simple coefficient sum is zero because $F_n=O(t^{-2})$.
+Comparing these functional values gives the Meijer--G version of
+\eqref{arith-bridge}, without using independence of any zeta values.
+
+Finally the rational gauge between the two contiguous systems is
+\[
+ M_G(n)=\frac{\kappa_{n+1}}{\kappa_n}K(n)^{-1}H(n)K(n+1),
+ \qquad K(n)_{ij}=\begin{cases}\binom ji(2n)^{j-i}&i\leq j,\\0&i>j.
+ \end{cases}
+\]
+It follows by the parameter substitution
+\[
+ x=(1+2n-a_2,1+2n-a_3,1+2n-a_0,1+2n-a_1,1+2n-a_4),
+ \quad y=(1+2n-b_1,1+2n-b_2,1+2n-b_3,1+2n-b_4)
+\]
+in the contiguous relations and the binomial change of jet origin.
+The accompanying algebraic verifier also checks all sixteen entries
+of this identity as rational functions, not merely at sample depths.
+Since $K(0)=I$ and $K(n)e_0=e_0$, telescoping the gauge gives
+$W_n^{(G)}e_0=\kappa_nW_n^{(5)}e_0$, which proves \eqref{arith-bridge}.
+
+As a scalar check, \eqref{arith-aformula} has term ratio
+\[
+ \frac{a_{2n+k+1}}{a_{2n+k}}
+ =\frac{(1+12n+k)(1+13n+k)(1+14n+k)(k-14n)(k-15n)}
+ {(1+k)(1+n+k)(1+2n+k)(1+3n+k)(1+4n+k)}.
+\]
+Thus $Q_n=\rho_n\,{}_5F_4(1+13n,1+14n,-14n,-15n,1+12n;
+1+n,1+2n,1+3n,1+4n;1)$, with exactly the family in the question.
+
+\section{All rational initial rows of the companion}
+The common divisor also applies to arbitrary fixed rational initial
+rows, not just the two displayed numerator rows. Let $C(n)$ be the
+three-dimensional companion and
+\[
+ U_0=[e_0,H(0)e_0,H(0)H(1)e_0],\qquad
+ R=\begin{pmatrix}1&0&0&0\\0&0&-1/2&1/4\\0&0&0&-1/6\end{pmatrix},
+ \quad S=RU_0.
+\]
+The companion identity gives $W_n^{(5)}e_0=U_0Z_ne_0$, where
+$Z_n=C(0)\cdots C(n-1)$. The matrix $S$ is invertible over $\Q$.
+A short exact certificate is that its entries are $101$-integral and
+\[
+ S\pmod {101}=\begin{pmatrix}1&89&15\\0&35&64\\0&98&61\end{pmatrix},
+ \qquad \det S\equiv4\pmod {101}.
+\]
+These entries are obtained from the first two forward steps; the
+verifier reconstructs those columns and compares the saved companion
+coboundary exactly.
+
+For any finite list of fixed rational initial rows $u_1,\ldots,u_k$,
+choose a positive integer $d$ clearing all entries of $u_iS^{-1}$.
+Then \eqref{arith-bridge} and Theorem~\ref{arith-main} imply
+\[
+ \boxed{\displaystyle
+ \frac{6d\,C_nd_{19n}^4\rho_n}{G_n}\,u_iZ_ne_0\in\Z
+ \qquad(1\leq i\leq k,\ n\geq1).}
+\]
+Indeed the left side equals $d\,u_iS^{-1}(X_n/G_n)$.
+Thus the explicit divisor and its uniform density bound are inherited
+by every finite collection of rational initial conditions after a
+fixed denominator clearing. This does not presume linear independence
+of their limiting ratios.
+
+
+\begin{thebibliography}{9}
+\bibitem{DLMF} NIST Digital Library of Mathematical Functions,
+\href{https://dlmf.nist.gov/16.3.E1}{Eq.~16.3.1},
+\href{https://dlmf.nist.gov/5.4.E14}{Eq.~5.4.14}, and
+\href{https://dlmf.nist.gov/5.2}{\S5.2},
+\href{https://dlmf.nist.gov/5.5.E3}{Eq.~5.5.3},
+\href{https://dlmf.nist.gov/5.12.E1}{Eq.~5.12.1},
+\href{https://dlmf.nist.gov/5.13.E1}{Eq.~5.13.1}, and
+\href{https://dlmf.nist.gov/16.17.E1}{Eq.~16.17.1}.
+\bibitem{RV} G.~Rhin and C.~Viola,
+\emph{The group structure for $\zeta(3)$},
+Acta Arith. \textbf{97} (2001), 269--293.
+\url{https://www.math.ru.nl/~zudilin/zw/Rhin-Viola_AA_2001.pdf}.
+\bibitem{Zudilin} W.~Zudilin,
+\emph{Arithmetic of linear forms involving odd zeta values}.
+\url{https://arxiv.org/abs/math/0206176}.
+\end{thebibliography}
+\end{document}
